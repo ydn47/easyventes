@@ -11,6 +11,7 @@ class ProductController extends Controller
 {
     public function listAction()
     {
+        //lol
         $em = $this->getDoctrine()->getManager();
         $repos = $em->getRepository('EasyVentesBundle:Product');
         $products = $repos->findAll();
