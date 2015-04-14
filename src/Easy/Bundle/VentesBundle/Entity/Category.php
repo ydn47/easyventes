@@ -91,4 +91,9 @@ class Category
     {
         return $this->active;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }
