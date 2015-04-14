@@ -260,7 +260,7 @@ class Product
     /**
      * Get categories
      * 
-     * @return Collection2
+     * @return Category
      */
     public function getCategories()
     {

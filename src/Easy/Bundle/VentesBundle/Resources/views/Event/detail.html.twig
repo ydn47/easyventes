@@ -1,0 +1,17 @@
+<h1> Detail </h1>
+
+{% block body %}
+
+    <div class="row">
+        <h2>{{ event.name }}</h2>
+        <p>{{ event.description }}</p>
+        <p>{{ event.dateStart | date("m/d/Y")  }}</p>
+        <p>{{ event.dateStart | date("h:iA")  }}</p>
+        {% for category in event.categories %}
+            <p>{{ category.name }}</p>
+        {% endfor %}
+
+        <a type="button" href="{{ path('easy_event_list') }}">Retour</a>
+    </div>
+
+{% endblock %}

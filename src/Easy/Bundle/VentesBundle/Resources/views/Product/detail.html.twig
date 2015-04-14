@@ -1,0 +1,17 @@
+<h1> Detail </h1>
+
+{% block body %}
+
+    <div class="row">
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.description }}</p>
+        {% for category in product.categories %}
+            <p>{{ category.name }}</p>
+        {% endfor %}
+        <p>{{ product.picture }}</p>
+        <p>{{ product.qty }}</p>
+
+        <a type="button" href="{{ path('easy_product_list') }}">Retour</a>
+    </div>
+
+{% endblock %}

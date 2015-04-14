@@ -1,3 +1,43 @@
 easy_ventes_homepage:
     path:     /hello/{name}
     defaults: { _controller: EasyVentesBundle:Default:index }
+
+easy_product_list:
+    path: /product
+    defaults: { _controller: EasyVentesBundle:Product:list }
+
+easy_product_add:
+    path: /product/add
+    defaults: { _controller: EasyVentesBundle:Product:add }
+
+easy_product_detail:
+    path: /product/{id}
+    defaults: { _controller: EasyVentesBundle:Product:detail }
+
+easy_product_update:
+    path: /product/update/{id}
+    defaults: { _controller: EasyVentesBundle:Product:update }
+
+easy_product_remove:
+    path: /product/delete/{id}
+    defaults: { _controller: EasyVentesBundle:Product:remove }
+
+easy_event_list:
+    path: /event
+    defaults: { _controller: EasyVentesBundle:Event:list }
+
+easy_event_add:
+    path: /event/add
+    defaults: { _controller: EasyVentesBundle:Event:add }
+
+easy_event_detail:
+    path: /event/{id}
+    defaults: { _controller: EasyVentesBundle:Event:detail }
+
+easy_event_update:
+    path: /event/update/{id}
+    defaults: { _controller: EasyVentesBundle:Event:update }
+
+easy_event_remove:
+    path: /event/delete/{id}
+    defaults: { _controller: EasyVentesBundle:Event:remove }
