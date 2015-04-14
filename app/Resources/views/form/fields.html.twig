@@ -1,0 +1,11 @@
+{% extends "bootstrap_3_layout.html.twig" %}
+
+{% block submit_widget %}
+    {% set attr = attr|merge({'class': attr.class|default('') ~ ' btn-primary'}) %}
+    {{ parent() }}
+{% endblock submit_widget %}
+
+{% block datepicker_widget %}
+    {% set attr = attr|merge({'class': attr.class|default('') ~ ' datepicker form-control'}) %}
+    <input type="text" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{% endblock datepicker_widget %}

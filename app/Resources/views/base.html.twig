@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        {% stylesheets output="css/compiled/main.css" filter="cssrewrite"
+        "bower_components/bootstrap/css/bootstrap.min.css"
+        "bower_components/bootstrap/css/bootstrap-theme.min.css"
+        "vendor/jquery-ui/jquery-ui.min.css"
+        %}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block nav %}
+            {% include ':include:navbar.html.twig' %}
+        {% endblock %}
+        <div class="container">
+
+            <div class="row">
+                <div class='col-md-12'>{% block body %}{% endblock %}</div>
+                <div class='col-md-4'>{% block aside %}{% endblock %}</div>
+            </div>
+        </div>
+        {% javascripts output="js/compiled/main.js"
+            "bower_components/bootstrap/jquery/jquery-1.11.2.js"
+            "bower_components/bootstrap/js/bootstrap.js"
+            "vendor/jquery-ui/jquery-ui.min.js"
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        <script type="text/javascript">
+            $('.datepicker').datepicker({
+            dateFormat: 'dd/mm/yy'});
+        </script>
+        {% endjavascripts %}
+    </body>
+</html>

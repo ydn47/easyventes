@@ -1,0 +1,36 @@
+<?php
+
+namespace Easy\Bundle\VentesBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ProductSale
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="ProductSale")
+ */
+class ProductSale
+{
+    /**
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="products")
+     * @ORM\Id
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     */
+    private $product;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Event", inversedBy="events")
+     * @ORM\Id
+     * @ORM\JoinColumn(name="event_id", referencedColumnName="id")
+     */
+    private $event;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="qty", type="integer")
+     */
+    private $qty;
+  
+}
