@@ -1,11 +1,16 @@
 <?php
 
+namespace Easy\Bundle\VentesBundle\Entity;
+
+
+
+
 use Doctrine\Common\Collections\Collection;
 use Easy\Bundle\VentesBundle\Entity\User;
 use Easy\Bundle\VentesBundle\Entity\UserEvent;
+use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 
-namespace Easy\Bundle\VentesBundle\Entity;
 
 /**
  * User

@@ -1,14 +1,16 @@
 <?php
 
+namespace Easy\Bundle\VentesBundle\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Easy\Bundle\VentesBundle\Entity\Category;
 use Easy\Bundle\VentesBundle\Entity\ProductRepository;
 use Easy\Bundle\VentesBundle\Entity\ProductSale;
+
 use Doctrine\ORM\Mapping as ORM;
 
 
-namespace Easy\Bundle\VentesBundle\Entity;
 
 /**
  * Product

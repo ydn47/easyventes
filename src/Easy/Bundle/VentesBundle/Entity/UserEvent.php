@@ -1,11 +1,13 @@
 <?php
 
+namespace Easy\Bundle\VentesBundle\Entity;
+
 use Easy\Bundle\VentesBundle\Entity\Event;
 use Easy\Bundle\VentesBundle\Entity\User;
 use Easy\Bundle\VentesBundle\Entity\UserEvent;
 use Easy\Bundle\VentesBundle\Entity\UserEventRepository;
 
-namespace Easy\Bundle\VentesBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * UserEvent
@@ -16,7 +18,7 @@ namespace Easy\Bundle\VentesBundle\Entity;
 class UserEvent
 {
     /**
-     * @ORM\ManyToOne(targetEntity="User2", inversedBy="users")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="users")
      * @ORM\Id
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
