@@ -93,3 +93,6 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Easy\Bundle\VentesBundle\Entity\User
+    registration:
+        form:
+            type: easy_user_registration

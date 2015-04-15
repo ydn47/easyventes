@@ -11,11 +11,24 @@ class RegistrationType extends BaseType
     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        parent::buildForm($builder, $options);
+        $user = new \Easy\Bundle\VentesBundle\Entity\User();
+        $user->addRole('ROLE_USER');
+        $roles = $user->getRoles();
         
-        $builder->add('roles')
-                ->add('userlastname', null, array('label' => 'Nom'))
-                ->add('btn', 'submit', array('label' => 'Envoyer'));
+        $builder
+            ->add('email', 'email', array('label' => 'Email'))
+            ->add('userlastname', null, array('label' => 'Nom'))
+            ->add('userfirstname', null, array('label' => 'Prénom'))
+            ->add('username', null, array('label' => 'Pseudo'))
+            ->add('plainPassword', 'repeated', array(
+                'type' => 'password',
+                'options' => array('translation_domain' => 'FOSUserBundle'),
+                'first_options' => array('label' => 'form.password'),
+                'second_options' => array('label' => 'form.password_confirmation'),
+                'invalid_message' => 'fos_user.password.mismatch',
+            ))
+            ->add('newsletter', null, array('required' =>false))
+        ;
         
         return $builder;
     }

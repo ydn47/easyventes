@@ -1,6 +1,6 @@
 easy_client_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: EasyClientBundle:Default:index }
+    path:     /
+    defaults: { _controller: EasyVentesBundle:User:index }
 
 easy_client_product:
     path:   /product
@@ -13,3 +13,7 @@ easy_client_event:
 easy_client_event_inscription:
     path:   /event/inscription
     defaults: { _controller: EasyClientBundle:Event:inscription }
+    
+easy_ventes_update:
+    path:     /user/update
+    defaults: { _controller: EasyVentesBundle:User:update }
