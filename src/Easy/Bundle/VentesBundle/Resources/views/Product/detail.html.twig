@@ -1,6 +1,7 @@
-<h1> Detail </h1>
+{% extends '::base.html.twig' %}
 
 {% block body %}
+    <h1> Detail </h1>
 
     <div class="row">
         <h2>{{ product.name }}</h2>
@@ -10,6 +11,14 @@
         {% endfor %}
         <p>{{ product.picture }}</p>
         <p>{{ product.qty }}</p>
+
+        {% if product.picture %}
+            <img width="300px" src="{{ asset(product.getWebPath())}}" alt="" />
+        {% else %}
+            <p>Aucune image pour ce produit</p>
+        {% endif %}
+
+
 
         <a type="button" href="{{ path('easy_product_list') }}">Retour</a>
     </div>

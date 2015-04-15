@@ -1,0 +1,15 @@
+easy_client_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: EasyClientBundle:Default:index }
+
+easy_client_product:
+    path:   /product
+    defaults: { _controller: EasyClientBundle:Product:list }
+
+easy_client_event:
+    path:   /event
+    defaults: { _controller: EasyClientBundle:Event:list }
+
+easy_client_event_inscription:
+    path:   /event/inscription
+    defaults: { _controller: EasyClientBundle:Event:inscription }

@@ -7,15 +7,16 @@ use Doctrine\Common\Collections\Collection;
 use Easy\Bundle\VentesBundle\Entity\Category;
 use Easy\Bundle\VentesBundle\Entity\ProductRepository;
 use Easy\Bundle\VentesBundle\Entity\ProductSale;
-
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-
 
 
 /**
  * Product
  *
  * @ORM\Table()
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="ProductRepository")
  */
 class Product
@@ -46,7 +47,7 @@ class Product
     /**
      * @var string
      *
-     * @ORM\Column(name="picture", type="string", length=255)
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
      */
     private $picture;
 
@@ -80,6 +81,20 @@ class Product
      * @ORM\Column(name="active", type="boolean")
      */
     private $active;
+
+    /**
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     mimeTypes = {"image/jpg", "image/jpeg", "image/png", "image/gif"},
+     *     mimeTypesMessage = "Choisissez un fichier image valide"
+     * )
+     */
+    private $file;
+
+    /**
+     * @var string
+     */
+    private $tmpImage;
 
     public function __construct()
     {
@@ -303,5 +318,92 @@ class Product
     public function getEvents()
     {
         return $this->events;
+    }
+
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+
+        if (isset($this->picture)) {
+            $this->tmpImage = $this->picture;
+            $this->picture = null;
+        } else {
+            $this->picture = 'creation';
+        }
+
+        return $this;
+    }
+
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->getFile()) {
+            $picture = sha1(uniqid('img_'));
+            $this->setPicture($picture . '.' . $this->getFile()->guessExtension());
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        $this->getFile()->move($this->getUploadRootDir(), $this->getPicture());
+
+        if (isset($this->tmpImage)) {
+            unlink($this->getUploadDir().'/'.$this->tmpImage);
+            $this->tmpImage = null;
+        }
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if (($file = $this->getAbsolutePath())) {
+            unlink($file);
+        }
+    }
+
+    public function getAbsolutePath()
+    {
+        if (null === $this->getPicture()) {
+            return;
+        }
+        return $this->getUploadRootDir() . '/' . $this->getPicture();
+    }
+
+    public function getWebPath()
+    {
+        if (null === $this->getPicture()) {
+            return;
+        }
+        return $this->getUploadDir() . '/' . $this->getPicture();
+    }
+
+    protected function getUploadRootDir()
+    {
+        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        return 'upload/documents';
     }
 }

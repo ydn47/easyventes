@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>List des produits</h1>
+    <div class="row">
+        <table>
+            <tr>
+                <td>#</td>
+                <td>Name</td>
+                <td>qty</td>
+                <td>Action</td>
+            </tr>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.qty }}</td>
+                    <td><a href="{{ path('easy_product_detail', {'id': product.id})  }}">Voir</a>
+                    <a href="">Modifier</a>
+                    <a href="{{ path('easy_product_remove', {'id': product.id})  }}">Supprimer</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <a href="{{ path('easy_product_add') }}"> Ajouter un nouveau produit</a>
+{% endblock %}

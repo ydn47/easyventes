@@ -2,7 +2,6 @@
 
 namespace Easy\Bundle\VentesBundle\Controller;
 
-
 use Easy\Bundle\VentesBundle\Entity\Event;
 use Easy\Bundle\VentesBundle\Form\Type\EventType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

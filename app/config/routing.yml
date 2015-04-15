@@ -1,5 +1,9 @@
 easy_ventes:
     resource: "@EasyVentesBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+easy_client:
+    resource: "@EasyClientBundle/Resources/config/routing.yml"
     prefix:   /
 
 app:

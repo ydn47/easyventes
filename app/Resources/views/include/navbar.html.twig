@@ -3,52 +3,54 @@
 
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Cart</span>
+                <span class="sr-only">Easy</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Cart</a>
+            <a class="navbar-brand" href="#">Easy</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Catégories</a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ path('ipf_cart_category_list') }}">Liste</a></li>
-                        <li><a href="{{ path('ipf_cart_category_add') }}">Ajouter</a></li>
-                    </ul>
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Produits</a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ path('ipf_cart_product_list') }}">Liste</a></li>
-                        <li><a href="{{ path('ipf_cart_product_add') }}">Ajouter</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Commandes</a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ path('ipf_cart_command_list') }}">Liste</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Panier</a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ path('ipf_cart_mycart_list') }}">Liste</a></li>
-                        <li><a href="{{ path('ipf_cart_mycart') }}">Cart</a></li>
-                    </ul>
-                </li>
-            </ul>
+            {% if is_granted("ROLE_ADMIN")%}
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Produit</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ path('easy_product_list') }}">Liste</a></li>
+                            <li><a href="{{ path('easy_product_add') }}">Ajouter</a></li>
+                        </ul>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Evènements</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ path('easy_event_list') }}">Liste</a></li>
+                            <li><a href="{{ path('easy_event_add') }}">Ajouter</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            {% elseif is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="{{ path('easy_client_event') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Prochaines ventes</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="{{ path('easy_client_product') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Produits</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="{{ path('easy_client_event_inscription') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Inscription à une vente</a>
+                    </li>
+                </ul>
+            {% endif %}
+
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <a>{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a>
                     {% else %}
-                        <a class="alert-danger" href="{{ path('fos_user_registration_register') }}">S'inscrire</a>
+                            <a class="alert-danger" href="{{ path('fos_user_registration_register') }}">S'inscrire</a>
                     {% endif %}
                 </li>
-                <li>    
+                <li>
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <a class="alert-info" href="{{ path('fos_user_security_logout') }}">
                             {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
@@ -58,6 +60,7 @@
                     {% endif %}
                 </li>
             </ul>
-        </div><!-- /.navbar-collapse -->
+            </div><!-- /.navbar-collapse -->
+
     </div><!-- /.container-fluid -->
 </nav>

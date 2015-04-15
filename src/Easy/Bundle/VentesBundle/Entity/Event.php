@@ -279,4 +279,5 @@ class Event
     {
         return $this->products;
     }
+
 }

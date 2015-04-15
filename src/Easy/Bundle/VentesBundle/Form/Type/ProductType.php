@@ -17,7 +17,7 @@ class ProductType extends AbstractType
     {
         $builder->add('name',null, array('label'=> 'Nom', 'attr' => array('class' => 'form-control')))
             ->add('description')
-            ->add('picture')
+            ->add('file')
             ->add('price')
             ->add('qty')
             ->add('categories')
