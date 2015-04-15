@@ -1,17 +1,18 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
+<nav class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+    <div class="navbar navbar-default yamm">
+        <div class="container">
 
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Easy</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Easy</a>
-        </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Easy Ventes</a>
+            </div>
+            <div class="navbar-buttons">
+                <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-align-justify"></i>
+                </button>
+            </div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="navigation">
             {% if is_granted("ROLE_ADMIN")%}
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
@@ -43,24 +44,38 @@
             {% endif %}
 
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        <a>{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a>
-                    {% else %}
-                            <a class="alert-danger" href="{{ path('fos_user_registration_register') }}">S'inscrire</a>
-                    {% endif %}
+                <li class="active">
+                    <a href="">Accueil</a>
                 </li>
                 <li>
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        <a class="alert-info" href="{{ path('fos_user_security_logout') }}">
-                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                        </a>
-                    {% else %}
-                        <a class="alert-info" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-                    {% endif %}
+                    <a href="">Prochaines Ventes</a>
                 </li>
+                <li>
+                    <a href="#">Produits</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <li><a>{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a></li>
+                        {% else %}
+                            <li><a class=""  href="{{ path('fos_user_registration_register') }} "><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Inscrivez-Vous</span></a></li>
+                        {% endif %}
+                        <li>
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <a class="" href="{{ path('fos_user_security_logout') }}">
+                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                </a>
+                            {% else %}
+                                <a class="" href="{{ path('fos_user_security_login') }}" data-toggle="modal" data-target=""><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
             </div><!-- /.navbar-collapse -->
 
     </div><!-- /.container-fluid -->
+    </div>
 </nav>

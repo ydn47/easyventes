@@ -1,1 +1,120 @@
-Accueil
+{% extends '::base.html.twig' %}
+{% block slide %}
+    <section>
+        <!-- *** HOMEPAGE CAROUSEL ***
+_________________________________________________________ -->
+
+        <div class="home-carousel">
+
+            <div class="dark-mask"></div>
+            <div class="container">
+                <div class="homepage owl-carousel">
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-sm-5 right">
+
+                                <h1>Iphone 6</h1>
+                                <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                            </div>
+                            <div class="col-sm-7">
+                                <img class="img-responsive" src="{{ asset('bower_components/bootstrap/img/02iphone.png') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="row">
+
+                            <div class="col-sm-7 text-center">
+                                <img class="img-responsive" src="{{ asset('bower_components/bootstrap/img/03samsung.png') }}" alt="">
+                            </div>
+
+                            <div class="col-sm-5">
+                                <h2>Samsung Galaxy S6</h2>
+                                <ul class="list-style-none">
+                                    <li>Lorem ipsum.</li>
+                                    <li>Lorem.</li>
+                                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing.</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-sm-5 right">
+                                <h1>Casque Beats</h1>
+                                <ul class="list-style-none">
+                                    <li>Lorem ipsum dolor sit.</li>
+                                    <li>Lorem ipsum dolor sit amet.</li>
+                                    <li>Lorem ipsum dolor.</li>
+                                    <li>Lorem ipsum dolor sit.</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-7">
+                                <img class="img-responsive" src="{{ asset('bower_components/bootstrap/img/01casque.png') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <img class="img-responsive" src="{{ asset('bower_components/bootstrap/img/04hp.png') }}" alt="">
+                            </div>
+                            <div class="col-sm-5">
+                                <h1>Ordinateur HP</h1>
+                                <ul class="list-style-none">
+                                    <li>Lorem ipsum dolor.</li>
+                                    <li>Lorem ipsum dolor sit.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.project owl-slider -->
+            </div>
+        </div>
+
+        <!-- *** HOMEPAGE CAROUSEL END *** -->
+    </section>
+{% endblock slide %}
+{% block body %}
+    <section class="bar background-white">
+        <div class="container">
+            <div class="col-md-12">
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="box-simple">
+                            <div class="icon">
+                                <a href="ventes.html"><i class="fa fa-shopping-cart"></i></a>
+                            </div>
+                            <h3>Prochaines Ventes</h3>
+                            <p>Les horraires et dates des prochaines ventes ainsi que le lieux et le types de produits vendu. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="box-simple">
+                            <div class="icon">
+                                <a href="produits.html"><i class="fa fa-star"></i></a>
+                            </div>
+                            <h3>Top 10 des meilleures ventes</h3>
+                            <p>Présentation des produits phares, listant les 10 produits les plus vendus lors des
+                                3 dernières soirées de vente privée.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="box-simple">
+                            <div class="icon">
+                                <a href="login.html"><i class="fa fa-user"></i></a>
+                            </div>
+                            <h3>Créez votre compte client</h3>
+                            <p>Inscriver sur notre site pour participer au soirée privée de ventes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock body %}
