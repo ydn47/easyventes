@@ -1,6 +1,6 @@
 easy_ventes_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: EasyVentesBundle:Default:index }
+    path:     /
+    defaults: { _controller: EasyVentesBundle:User:index }
 
 easy_product_list:
     path: /product
@@ -41,3 +41,7 @@ easy_event_update:
 easy_event_remove:
     path: /event/delete/{id}
     defaults: { _controller: EasyVentesBundle:Event:remove }
+
+easy_ventes_update:
+    path:     /user/update
+    defaults: { _controller: EasyVentesBundle:User:update }

@@ -4,7 +4,6 @@ namespace Easy\Bundle\VentesBundle\Entity;
 
 use Easy\Bundle\VentesBundle\Entity\Product;
 use Easy\Bundle\VentesBundle\Entity\Event;
-use Easy\Bundle\VentesBundle\Entity\ProductSale;
 use Easy\Bundle\VentesBundle\Entity\ProductSaleRepository;
 
 use Doctrine\ORM\Mapping as ORM;

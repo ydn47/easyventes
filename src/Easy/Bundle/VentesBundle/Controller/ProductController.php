@@ -11,7 +11,6 @@ class ProductController extends Controller
 {
     public function listAction()
     {
-        //lol
         $em = $this->getDoctrine()->getManager();
         $repos = $em->getRepository('EasyVentesBundle:Product');
         $products = $repos->findAll();
@@ -32,14 +31,16 @@ class ProductController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $document = $form->getData();
             $em = $this->getDoctrine()->getManager();
-            $em->persist($form->getData());
+            $em->persist($document);
             $em->flush();
             
             return $this->redirect($this->generateUrl('easy_product_list'));
         }
         return $this->render('EasyVentesBundle:Product:form.html.twig', ['form' => $form->createView()]);
     }
+
     public function removeAction($id)
     {
         $em = $this->getDoctrine()->getManager();
