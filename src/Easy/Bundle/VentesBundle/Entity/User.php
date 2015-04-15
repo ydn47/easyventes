@@ -35,6 +35,13 @@ class User extends BaseUser
     private $userlastname;
     
     /**
+     * @var string
+     *
+     * @ORM\Column(name="userfirstname", type="string", length=255)
+     */
+    private $userfirstname;
+    
+    /**
      * @var boolean
      *
      * @ORM\Column(name="newsletter", type="boolean")
@@ -55,6 +62,11 @@ class User extends BaseUser
     {
         return $this->userlastname;
     }
+    
+    public function getUserFirstName()
+    {
+        return $this->userfirstname;
+    }
 
     public function getNewsletter()
     {
@@ -66,6 +78,12 @@ class User extends BaseUser
         $this->userlastname = $userlastname;
         return $this;
     }
+    
+    public function setUserFirstName($userfirstname)
+    {
+        $this->userfirstname = $userfirstname;
+        return $this;
+    }    
 
     public function setNewsletter($newsletter)
     {

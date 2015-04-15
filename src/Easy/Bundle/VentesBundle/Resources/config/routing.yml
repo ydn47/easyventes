@@ -1,7 +1,3 @@
-easy_ventes_homepage:
-    path:     /
-    defaults: { _controller: EasyVentesBundle:User:index }
-
 easy_product_list:
     path: /product
     defaults: { _controller: EasyVentesBundle:Product:list }
@@ -41,7 +37,3 @@ easy_event_update:
 easy_event_remove:
     path: /event/delete/{id}
     defaults: { _controller: EasyVentesBundle:Event:remove }
-
-easy_ventes_update:
-    path:     /user/update
-    defaults: { _controller: EasyVentesBundle:User:update }
