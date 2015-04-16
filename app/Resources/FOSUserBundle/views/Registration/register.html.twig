@@ -1,8 +1,25 @@
 {% extends "base.html.twig" %}
+{% block breadcrumbs %}
+    <div id="heading-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1>S'inscrire</h1>
+                </div>
+                <div class="col-md-5">
+                    <ul class="breadcrumb">
+                        <li><a href="">Acceuil</a>
+                        </li>
+                        <li>Inscription</li>
+                    </ul>
 
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock breadcrumbs %}
 {% block body %}
 {% block fos_user_content %}
-    qdfqsdfdf
     {% include "FOSUserBundle:Registration:register_content.html.twig" %}
 {% endblock fos_user_content %}
     {% endblock body %}

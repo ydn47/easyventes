@@ -7,3 +7,4 @@ use Doctrine\ORM\EntityRepository;
 class UserCategoryRepository extends EntityRepository
 {
 }
+

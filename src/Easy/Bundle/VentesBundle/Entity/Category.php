@@ -35,6 +35,10 @@ class Category
      */
     private $active;
 
+    /**
+     * @ORM\OneToMany(targetEntity="UserCategory", mappedBy="category", cascade={"persist"})
+     */
+    private $users;
 
     /**
      * Get id
@@ -95,5 +99,38 @@ class Category
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * Add users
+     *
+     * @param UserCategory $users
+     * @return Category
+     */
+    public function addUser(UserCategory $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param UserCategory $users
+     */
+    public function removeUser(UserCategory $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }
