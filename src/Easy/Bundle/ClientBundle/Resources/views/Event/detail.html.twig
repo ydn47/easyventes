@@ -55,44 +55,21 @@
         {% endif %}
 
         <h3>Produits liés à la vente</h3>
-        {#% for product in products %} #}
         <div class="row">
-            <div class="col-lg-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Produit 1</div>
-                    <div class="panel-body">
-                        Produit
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Produit 2</div>
-                    <div class="panel-body">
-                        Produit
-                    </div>
-                </div>
-            </div>
+        {% for product in products %}
 
             <div class="col-lg-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Produit 3</div>
+                    <div class="panel-heading">{{ product.name }}</div>
                     <div class="panel-body">
-                        Produit
+                        {% if product.picture %}
+                            <img width="100px" src="{{ asset(product.getWebPath())}}" alt="" />
+                        {% endif %}
+                        {{ product.description }}
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Produit 4</div>
-                    <div class="panel-body">
-                        Produit
-                    </div>
-                </div>
-            </div>
+        {% endfor %}
         </div>
-
-
-        {#% endfor %}#}
     </div>
 {% endblock %}

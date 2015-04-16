@@ -16,8 +16,8 @@
                 {{ event.description }}
             </div>
             <div class="list-group-item">
-                <p> Du {{ event.dateStart | date("m/d/Y")  }} à {{ event.dateStart | date("H:i")  }} </p>
-                <p>Au {{ event.dateEnd | date("m/d/Y")  }} à {{ event.dateEnd | date("H:i")  }} </p>
+                <p> Du {{ event.dateStart | date("d/m/Y")  }} à {{ event.dateStart | date("H:i")  }} </p>
+                <p>Au {{ event.dateEnd | date("d/m/Y")  }} à {{ event.dateEnd | date("H:i")  }} </p>
             </div>
             <div class="list-group-item">
                 Catégories:
@@ -26,9 +26,9 @@
                 {% endfor %}
             </div>
         </div>
-
-
-        <a type="button" href="{{ path('easy_event_list') }}">Retour</a>
+        <a class="btn btn-primary" href="{{ path('easy_client_best') }}">Ajouter les produits vendus</a>
+        <a class="btn btn-primary" href="{{ path('easy_event_loterie') }}">Lancer la lotterie</a>
+        <a class="btn btn-info" href="{{ path('easy_event_list') }}">Retour</a>
     </div>
 
 {% endblock %}

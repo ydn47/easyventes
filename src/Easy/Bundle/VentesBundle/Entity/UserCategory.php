@@ -2,7 +2,6 @@
 
 namespace Easy\Bundle\VentesBundle\Entity;
 
-
 use Easy\Bundle\VentesBundle\Entity\Category;
 use Easy\Bundle\VentesBundle\Entity\User;
 use Easy\Bundle\VentesBundle\Entity\UserCategoryRepository;
