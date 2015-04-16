@@ -1,4 +1,25 @@
 {% extends '::base.html.twig' %}
+
+{% block breadcrumbs %}
+    <div id="heading-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1>Changer mon profil</h1>
+                </div>
+                <div class="col-md-5">
+                    <ul class="breadcrumb">
+                        <li><a href="">Acceuil</a>
+                        </li>
+                        <li>Paramètre</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock breadcrumbs %}
+
 {% block body %}
 {% for label,messages in app.session.flashbag.all %}
                 {% for message in messages %}

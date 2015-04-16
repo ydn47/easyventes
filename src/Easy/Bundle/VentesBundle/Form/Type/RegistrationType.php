@@ -24,6 +24,7 @@ class RegistrationType extends BaseType
                 'invalid_message' => 'fos_user.password.mismatch',
             ))
             ->add('newsletter', null, array('required' =>false))
+            ->add('nbevent', 'hidden', array('data' => 0))
         ;
         
         return $builder;

@@ -1,7 +1,24 @@
 {% extends '::base.html.twig' %}
-{% block nav %}
-    {% include ':include:navback.html.twig' %}
-{% endblock nav %}
+
+{% block breadcrumbs %}
+    <div id="heading-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1>Les plus vendus</h1>
+                </div>
+                <div class="col-md-5">
+                    <ul class="breadcrumb">
+                        <li><a href="">Acceuil</a>
+                        </li>
+                        <li>Produits</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock breadcrumbs %}
 
 {% block body %}
     <h1>Produits les plus vendus</h1>
@@ -17,7 +34,7 @@
                 <tr>
                     <td>{{ product.name }}</td>
                     <td>{{ product.qty }}</td>
-                    <td><a href="{{ path('easy_client_favorite', {'id': product.id})  }}">Ajouter</a></td>
+                    <td><a href="{{ path('easy_client_favorite', {'id': product.id})  }}" class="btn btn-template-main">Ajouter</a></td>
                 </tr>
             {% endfor %}
 
