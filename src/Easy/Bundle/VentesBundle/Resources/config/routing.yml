@@ -1,3 +1,4 @@
+# Routes pour l'entité Product
 easy_product_list:
     path: /product
     defaults: { _controller: EasyVentesBundle:Product:list }
@@ -18,6 +19,8 @@ easy_product_remove:
     path: /product/delete/{id}
     defaults: { _controller: EasyVentesBundle:Product:remove }
 
+
+# Routes pour l'entité Event
 easy_event_list:
     path: /event
     defaults: { _controller: EasyVentesBundle:Event:list }
@@ -37,3 +40,27 @@ easy_event_update:
 easy_event_remove:
     path: /event/delete/{id}
     defaults: { _controller: EasyVentesBundle:Event:remove }
+
+
+# Routes pour l'entité Category
+easy_category_list:
+    path: /category
+    defaults: { _controller: EasyVentesBundle:Category:list }
+
+easy_category_add:
+    path: /category/add
+    defaults: { _controller: EasyVentesBundle:Category:add }
+
+easy_category_update:
+    path: /category/update/{id}
+    defaults: { _controller: EasyVentesBundle:Category:update }
+
+
+# Routes pour l'entité ProductSale
+easy_productsale_update:
+    path: /productsale/update
+    defaults: { _controller: EasyVentesBundle:ProductSale:update }
+
+easy_productsale_list:
+    path: /productsale/{id}
+    defaults: { _controller: EasyVentesBundle:ProductSale:list }

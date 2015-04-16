@@ -77,7 +77,9 @@ class ProductSale
     /**
      * Get product
      *
-     * @return ProductProduct()
+     * @return Product
+     */
+    public function getProduct()
     {
         return $this->product;
     }

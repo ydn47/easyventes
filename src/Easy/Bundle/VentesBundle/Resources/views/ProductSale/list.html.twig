@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>List des produits de l'event</h1>
+    <div class="row">
+        <table class="table table-striped">
+            <tr>
+                <th>Produit</th>
+                <th>Quantité vendue</th>
+            </tr>
+
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td><form action="{{ path('easy_productsale_update') }}" method="POST"><input type="number" name="qty" value="{{ product.qty }}"/><input type="hidden" name="product_id" value="{{ product.id }}"/><input type="submit" value="Modifier"/></form></td>
+                    </tr>
+                {% endfor %}
+
+        </table>
+    </div>
+{% endblock %}

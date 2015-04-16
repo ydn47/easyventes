@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository
 {
+    public function findProductsType($id)
+    {
+        $qb = $this
+            ->createQueryBuilder('p')
+            ->join('p.categories', 'cat', 'WITH', 'cat.id = :categ_id')
+            ->addSelect('cat')
+            ->setParameter('categ_id', $id)
+        ;
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

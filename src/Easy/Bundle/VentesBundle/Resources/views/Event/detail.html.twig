@@ -4,13 +4,27 @@
 {% block body %}
 
     <div class="row">
-        <h2>{{ event.name }}</h2>
-        <p>{{ event.description }}</p>
-        <p>{{ event.dateStart | date("m/d/Y")  }}</p>
-        <p>{{ event.dateStart | date("h:iA")  }}</p>
-        {% for category in event.categories %}
-            <p>{{ category.name }}</p>
-        {% endfor %}
+        <br>
+        <div class="list-group">
+            <div class="list-group-item active">
+                {{ event.name }}
+                <span class="badge">100 Places</span>
+            </div>
+            <div class="list-group-item">
+                {{ event.description }}
+            </div>
+            <div class="list-group-item">
+                <p> Du {{ event.dateStart | date("m/d/Y")  }} à {{ event.dateStart | date("H:i")  }} </p>
+                <p>Au {{ event.dateEnd | date("m/d/Y")  }} à {{ event.dateEnd | date("H:i")  }} </p>
+            </div>
+            <div class="list-group-item">
+                Catégories:
+                {% for category in event.categories %}
+                    <li>{{ category.name }}</li>
+                {% endfor %}
+            </div>
+        </div>
+
 
         <a type="button" href="{{ path('easy_event_list') }}">Retour</a>
     </div>

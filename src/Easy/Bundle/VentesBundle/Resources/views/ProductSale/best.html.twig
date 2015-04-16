@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h1>Produits les plus vendus</h1>
+    <div class="row">
+        <table class="table table-striped">
+            <tr>
+                <th>Produit</th>
+                <th>Quantité vendue</th>
+            </tr>
+
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.qty }}</td>
+                    </tr>
+                {% endfor %}
+
+        </table>
+    </div>
+{% endblock %}

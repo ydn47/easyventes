@@ -11,8 +11,8 @@ class UserEventType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name',null, array('label'=> 'Nom', 'attr' => array('class' => 'form-control')))
-            ->add('user')
+        $builder
+            ->add('user', null,array('label'=> 'User', 'attr' => array('class' => 'form-control')))
             ->add('event')
             ->add('date')
             ->add('state')

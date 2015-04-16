@@ -5,8 +5,9 @@ namespace Easy\Bundle\VentesBundle\Entity;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Event
@@ -280,4 +281,24 @@ class Event
         return $this->products;
     }
 
+
+    /**
+     * @Assert\Callback
+     */
+    public function isDateValid(ExecutionContextInterface $context){
+        if($this->getDateStart() > $this->getDateEnd()){
+            $context
+                ->buildViolation('La date de début doit être antérieur à la date de fin')
+                ->atPath('dateStart')
+                ->addViolation()
+            ;
+        }
+        if($this->getDateStart() < new DateTime()){
+            $context
+                ->buildViolation('Vous devez créer un évènement avant que celui ci ne commence')
+                ->atPath('dateStart')
+                ->addViolation()
+            ;
+        }
+    }
 }
