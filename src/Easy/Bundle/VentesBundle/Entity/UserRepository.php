@@ -12,4 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    public function findUserLoterie(Event $event)
+    {
+        $qb = $this
+            ->createQueryBuilder('u')
+            ->join('u.events', 'ue', 'WITH', 'ue.event = :event')
+            ->addSelect('ue')
+            ->setParameter('event', $event)
+            ->orderBy('u.nbevent' , 'ASC')
+        ;
+
+        return $qb->getQuery()
+            ->setMaxResults($event->getNbPers())
+            ->getResult()
+            ;
+    }
 }

@@ -90,4 +90,36 @@ class EventController extends Controller
         }
     }
 
+    public function loterieAction($id)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $repo = $manager->getRepository('EasyVentesBundle:Event');
+        $repos = $manager->getRepository('EasyVentesBundle:User');
+        $repository = $manager->getRepository('EasyVentesBundle:UserEvent');
+
+        $event = $repo->find($id);
+        $users = $repos->findUserLoterie($event);
+
+        foreach ($users as $user){
+
+            $userevent = $repository->findOneBy(array('user' => $user, 'event' => $event));
+            $userevent->setState('VAL');
+            $user->setNbEvent( $user->getNbEvent() + 1 );
+
+            $manager->persist($user);
+            $manager->persist($userevent);
+            $manager->flush();
+
+            $this->get('session')->getFlashBag()->add('success', 'Votre loterie à bien été effectué');
+        }
+
+        $userevents = $repository->findBy( array('event' => $event, 'state' => 'DEM'));
+        foreach ($userevents as $userevent){
+            $userevent->setState('REF');
+            $manager->persist($userevent);
+            $manager->flush();
+        }
+
+        return $this->redirect($this->generateUrl("easy_event_list"));
+    }
 }

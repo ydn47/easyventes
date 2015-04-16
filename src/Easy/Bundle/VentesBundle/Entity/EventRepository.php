@@ -35,7 +35,6 @@ class EventRepository extends EntityRepository
             ->setFirstResult( 0 )
             ->setMaxResults( 3 );
 
-
         return $qb
             ->getQuery()
             ->getResult()
