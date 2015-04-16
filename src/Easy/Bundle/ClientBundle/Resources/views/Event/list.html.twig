@@ -1,25 +1,32 @@
 {% extends '::base.html.twig' %}
 
-
 {% block body %}
-    <h1>List des events</h1>
+    <h1>Liste des events</h1>
     <div class="row">
-        <table>
-            <tr>
-                <td>Event</td>
-                <td>Description</td>
-                <td>Action</td>
-            </tr>
-            {% for event in events %}
-                <tr>
-                    <td>{{ event.name }}</td>
-                    <td>{{ event.description}}</td>
-                    <td><a href="{{ path('easy_event_detail', {'id': event.id})  }}">Voir</a>
-                    <a href="{{ path('easy_event_update', {'id': event.id}) }}">Modifier</a>
-                    <a href="{{ path('easy_event_remove', {'id': event.id})  }}">Supprimer</a></td>
-                </tr>
-            {% endfor %}
-        </table>
+        <div class="col-md-9" id="customer-orders">
+            <div class="box">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <tr>
+                            <td>Event</td>
+                            <td>Description</td>
+                            <td>Action</td>
+                        </tr>
+                        {% for event in events %}
+                            <tr>
+                                <td>{{ event.name }}</td>
+                                <td>{{ event.description }}</td>
+                                <td>
+                                    <a href="{{ path('easy_event_detail', {'id': event.id}) }}">Voir</a>
+                                    <a href="{{ path('easy_event_update', {'id': event.id}) }}">Modifier</a>
+                                    <a href="{{ path('easy_event_remove', {'id': event.id}) }}">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-    <a href="{{ path('easy_event_add') }}"> Ajouter un nouveau produit</a>
+    <a href="{{ path('easy_event_add') }}" class="btn btn-template-main"> Ajouter un nouveau produit</a>
 {% endblock %}

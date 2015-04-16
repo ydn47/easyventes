@@ -1,3 +1,7 @@
+easy_product_homepage:
+    path: /dashboard
+    defaults: { _controller: EasyVentesBundle:Default:index }
+
 easy_product_list:
     path: /product
     defaults: { _controller: EasyVentesBundle:Product:list }

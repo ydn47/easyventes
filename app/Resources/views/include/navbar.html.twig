@@ -12,8 +12,8 @@
                 </button>
             </div>
 
-        <div class="collapse navbar-collapse" id="navigation">
-            {% if is_granted("ROLE_ADMIN")%}
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            {#{% if is_granted("ROLE_ADMIN")%}
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Produit</a>
@@ -41,17 +41,17 @@
                         <a href="{{ path('easy_client_event_inscription') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Inscription à une vente</a>
                     </li>
                 </ul>
-            {% endif %}
+            {% endif %}#}
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="active">
-                    <a href="">Accueil</a>
+                    <a href="{{ path('easy_client_homepage') }}">Accueil</a>
                 </li>
                 <li>
-                    <a href="">Prochaines Ventes</a>
+                    <a href="{{ path('easy_client_event') }}">Prochaines Ventes</a>
                 </li>
                 <li>
-                    <a href="#">Produits</a>
+                    <a href="{{ path('easy_client_product') }}">Produits</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte <b class="caret"></b></a>

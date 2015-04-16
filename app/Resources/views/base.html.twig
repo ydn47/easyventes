@@ -24,7 +24,7 @@
     <body>
     {% block nav %}
         {% include ':include:navbar.html.twig' %}
-    {% endblock nav%}
+    {% endblock nav %}
     {% block slide %}
 
     {% endblock slide %}
@@ -33,7 +33,10 @@
     <div class="container">
 
 
-        {% block body %}{% endblock body %}
+        {% block body %}
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        {% endblock body %}
 
 
     </div>
