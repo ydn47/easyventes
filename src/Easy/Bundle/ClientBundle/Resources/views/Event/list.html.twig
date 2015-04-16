@@ -1,7 +1,25 @@
 {% extends '::base.html.twig' %}
+{% block breadcrumbs %}
+    <div id="heading-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1>Ventes à venir</h1>
+                </div>
+                <div class="col-md-5">
+                    <ul class="breadcrumb">
+                        <li><a href="">Acceuil</a>
+                        </li>
+                        <li>Ventes à venir</li>
+                    </ul>
 
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock breadcrumbs %}
 {% block body %}
-    <h1>Ventes à Venir</h1>
+    <h1></h1>
     <div class="row">
         <div class="col-md-9" id="customer-orders">
             <div class="box">
@@ -21,8 +39,8 @@
                                 <td>{{ event.dateStart | date('d/m/y H:i') }}</td>
                                 <td>{{ event.dateEnd | date('d/m/y H:i') }}</td>
                                 <td>
-                                    <a href="{{ path('easy_client_event_detail', {'id': event.id}) }}">Voir</a>
-                                    <a href="{{ path('easy_client_event_inscription', {id : event.id }) }}">Participer</a>
+                                    <a href="{{ path('easy_client_event_detail', {'id': event.id}) }}" class="btn btn-template-main">Voir</a>
+                                    <a href="{{ path('easy_client_event_inscription', {id : event.id }) }}" class="btn btn-template-primary">Participer</a>
                                     
                                 </td>
                             </tr>
