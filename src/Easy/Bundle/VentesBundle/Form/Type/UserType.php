@@ -1,12 +1,12 @@
 <?php
 namespace Easy\Bundle\VentesBundle\Form\Type;
 
-use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
-class RegistrationType extends BaseType
+class UserType extends AbstractType
 {
     
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -22,8 +22,10 @@ class RegistrationType extends BaseType
                 'first_options' => array('label' => 'form.password'),
                 'second_options' => array('label' => 'form.password_confirmation'),
                 'invalid_message' => 'fos_user.password.mismatch',
+                'required' => false
             ))
-            ->add('newsletter', null, array('required' =>false))
+            ->add('newsletter', null, array('required' => false))
+            ->add('btn', 'submit', array('label' => 'Modifier'))
         ;
         
         return $builder;
@@ -38,7 +40,7 @@ class RegistrationType extends BaseType
     
     public function getName()
     {
-        return 'easy_user_registration';
+        return 'user_form';
     }
 
 }

@@ -14,6 +14,6 @@ easy_client_event_inscription:
     path:   /event/inscription
     defaults: { _controller: EasyClientBundle:Event:inscription }
     
-easy_ventes_update:
+easy_client_update:
     path:     /user/update
     defaults: { _controller: EasyVentesBundle:User:update }
