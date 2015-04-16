@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityNotFoundException;
 use Easy\Bundle\VentesBundle\Entity\ProductSale;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProductSaleController extends Controller
 {
@@ -99,6 +100,22 @@ class ProductSaleController extends Controller
             $i++;
         }
         return $this->render('EasyVentesBundle:ProductSale:best.html.twig', array('products' => $products));
+    }
+    
+    public function sendEmailThankAction() {
+        $message = \Swift_Message::newInstance()
+                    ->setSubject("Merci d'avoir participer à notre évènement")
+                    ->setFrom("yamgoue.daniella@gmail.com")
+                    ->setTo("yaya.dany@yahoo.fr")
+                    ->setContentType("text/html")
+//                    ->setBody(
+//                        $this->renderView(
+//                            'FamilyUserBundle:Email:verifyemail.html.twig')
+//                        )
+                ->setBody("merci d'avoir participé")
+                    ;
+                $this->get('mailer')->send($message);
+        return new Response($message);
     }
 
     public function updateAction()
