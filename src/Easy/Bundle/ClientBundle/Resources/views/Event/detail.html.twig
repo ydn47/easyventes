@@ -1,0 +1,80 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <h1>Fiche Evènement</h1>
+
+        <div class="list-group">
+            <div class="list-group-item active">
+               {{ event.name }}
+                <span class="badge">100 Places</span>
+            </div>
+            <div class="list-group-item">
+                {{ event.description }}
+            </div>
+            <div class="list-group-item">
+                <p> Du {{ event.dateStart | date("d/m/Y")  }} à {{ event.dateStart | date("H:i")  }} </p>
+                <p>Au {{ event.dateEnd | date("d/m/Y")  }} à {{ event.dateEnd | date("H:i")  }} </p>
+            </div>
+            <div class="list-group-item">
+            Catégories:
+                {% for category in event.categories %}
+                    <li>{{ category.name }}</li>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% if state is not null %}
+            {% if state == 'DEM' %}
+                <p class="bg-success"> En attente de confirmation de participation </p>
+            {% elseif state == 'VAL' %}
+                <p class="bg-success"> Participation Validé </p>
+            {%  elseif state == 'REF'%}
+                <p "bg-danger"> Participation Refusé </p>
+            {% endif %}
+        {% else %}
+            <a class="btn btn-primary" href="{{ path('easy_client_event_inscription', {id : event.id }) }}">Participer à l'évènement</a>
+        {% endif %}
+
+        <h3>Produits liés à la vente</h3>
+        {#% for product in products %} #}
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Produit 1</div>
+                    <div class="panel-body">
+                        Produit
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Produit 2</div>
+                    <div class="panel-body">
+                        Produit
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Produit 3</div>
+                    <div class="panel-body">
+                        Produit
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Produit 4</div>
+                    <div class="panel-body">
+                        Produit
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {#% endfor %}#}
+    </div>
+{% endblock %}

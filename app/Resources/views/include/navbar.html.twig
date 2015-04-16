@@ -1,7 +1,6 @@
 <nav class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
     <div class="navbar navbar-default yamm">
         <div class="container">
-
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Easy Ventes</a>
             </div>
@@ -11,37 +10,8 @@
                     <i class="fa fa-align-justify"></i>
                 </button>
             </div>
-
+            <div class="collapse navbar-collapse" id="navigation">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            {#{% if is_granted("ROLE_ADMIN")%}
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Produit</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ path('easy_product_list') }}">Liste</a></li>
-                            <li><a href="{{ path('easy_product_add') }}">Ajouter</a></li>
-                        </ul>
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Evènements</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ path('easy_event_list') }}">Liste</a></li>
-                            <li><a href="{{ path('easy_event_add') }}">Ajouter</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            {% elseif is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="{{ path('easy_client_event') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Prochaines ventes</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="{{ path('easy_client_product') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Produits</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="{{ path('easy_client_event_inscription') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Inscription à une vente</a>
-                    </li>
-                </ul>
-            {% endif %}#}
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="active">
@@ -52,6 +22,10 @@
                 </li>
                 <li>
                     <a href="{{ path('easy_client_product') }}">Produits</a>
+                </li>
+                <li>
+                    <a href="{{ path("easy_client_update") }}">Paramètres</a>
+                </li>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte <b class="caret"></b></a>
@@ -72,10 +46,29 @@
                         </li>
                     </ul>
                 </li>
-
             </ul>
             </div><!-- /.navbar-collapse -->
 
-    </div><!-- /.container-fluid -->
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Success</strong>{{ flashMessage }}.
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('info') %}
+                <div class="alert alert-dismissible alert-info">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Info</strong>{{ flashMessage }}.
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('warning') %}
+                <div class="alert alert-dismissible alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Info</strong>{{ flashMessage }}.
+                </div>
+            {% endfor %}
+
+            </div><!-- /.container-fluid -->
+        </div>
     </div>
 </nav>

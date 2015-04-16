@@ -2,9 +2,6 @@
 
 namespace Easy\Bundle\VentesBundle\Entity;
 
-
-
-
 use Doctrine\Common\Collections\Collection;
 use Easy\Bundle\VentesBundle\Entity\UserEvent;
 use Doctrine\ORM\Mapping as ORM;
@@ -25,43 +22,43 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="userlastname", type="string", length=255)
      */
     private $userlastname;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="userfirstname", type="string", length=255)
      */
     private $userfirstname;
-    
+
     /**
      * @var boolean
      *
      * @ORM\Column(name="newsletter", type="boolean")
      */
     private $newsletter;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="UserEvent", mappedBy="user", cascade={"persist"})
      */
     private $events;
-    
+
     public function __construct()
     {
         parent::__construct();
     }
-    
+
     public function getUserlastname()
     {
         return $this->userlastname;
     }
-    
+
     public function getUserFirstName()
     {
         return $this->userfirstname;
@@ -77,12 +74,12 @@ class User extends BaseUser
         $this->userlastname = $userlastname;
         return $this;
     }
-    
+
     public function setUserFirstName($userfirstname)
     {
         $this->userfirstname = $userfirstname;
         return $this;
-    }    
+    }
 
     public function setNewsletter($newsletter)
     {
@@ -94,7 +91,7 @@ class User extends BaseUser
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -127,10 +124,11 @@ class User extends BaseUser
     /**
      * Get events
      *
-     * @return Collection 
+     * @return Collection
      */
     public function getEvents()
     {
         return $this->events;
     }
+
 }

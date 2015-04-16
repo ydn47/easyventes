@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>Liste des events</h1>
+    <h1>Ventes à Venir</h1>
     <div class="row">
         <div class="col-md-9" id="customer-orders">
             <div class="box">
@@ -10,23 +10,29 @@
                         <tr>
                             <td>Event</td>
                             <td>Description</td>
+                            <td>Début</td>
+                            <td>Fin</td>
                             <td>Action</td>
                         </tr>
-                        {% for event in events %}
+                        {% for event in pagination %}
                             <tr>
                                 <td>{{ event.name }}</td>
                                 <td>{{ event.description }}</td>
+                                <td>{{ event.dateStart | date('d/m/y H:i') }}</td>
+                                <td>{{ event.dateEnd | date('d/m/y H:i') }}</td>
                                 <td>
-                                    <a href="{{ path('easy_event_detail', {'id': event.id}) }}">Voir</a>
-                                    <a href="{{ path('easy_event_update', {'id': event.id}) }}">Modifier</a>
-                                    <a href="{{ path('easy_event_remove', {'id': event.id}) }}">Supprimer</a>
+                                    <a href="{{ path('easy_client_event_detail', {'id': event.id}) }}">Voir</a>
+                                    <a href="{{ path('easy_client_event_inscription', {id : event.id }) }}">Participer</a>
+                                    
                                 </td>
                             </tr>
                         {% endfor %}
                     </table>
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <a href="{{ path('easy_event_add') }}" class="btn btn-template-main"> Ajouter un nouveau produit</a>
 {% endblock %}

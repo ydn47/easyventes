@@ -1,26 +1,32 @@
 {% extends '::base.html.twig' %}
-
+{% block nav %}
+    {% include ':include:navback.html.twig' %}
+{% endblock nav %}
 {% block body %}
-    <h1> Detail </h1>
-
     <div class="row">
-        <h2>{{ product.name }}</h2>
-        <p>{{ product.description }}</p>
-        {% for category in product.categories %}
-            <p>{{ category.name }}</p>
-        {% endfor %}
-        <p>{{ product.picture }}</p>
-        <p>{{ product.qty }}</p>
+        <div class="list-group">
+            <div class="list-group-item active">
+                {{ product.name }}
+                <span class="badge">{{ product.price }} €</span>
+            </div>
+            <div class="list-group-item">
+                {{ product.description }}
+            </div>
 
-        {% if product.picture %}
-            <img width="300px" src="{{ asset(product.getWebPath())}}" alt="" />
-        {% else %}
-            <p>Aucune image pour ce produit</p>
-        {% endif %}
+            {% if product.picture %}
+                <div class="list-group-item">
+                    <img width="300px" src="{{ asset(product.getWebPath())}}" alt="" />
+                </div>
+            {% endif %}
 
-
-
-        <a type="button" href="{{ path('easy_product_list') }}">Retour</a>
+            <div class="list-group-item">
+                Catégories:
+                {% for category in product.categories %}
+                    <li>{{ category.name }}</li>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
+    <a type="button" class="btn btn-primary" href="{{ path('easy_product_list') }}">Retour</a>
 {% endblock %}

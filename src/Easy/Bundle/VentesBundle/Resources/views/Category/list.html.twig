@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+{% block nav %}
+    {% include ':include:navback.html.twig' %}
+{% endblock nav %}
+
+{% block body %}
+    <div class="row">
+        <h1>Categories de Produits</h1>
+        <table class="table">
+            <tr>
+                <td>Name</td>
+                <td>Action</td>
+            </tr>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('easy_category_update', {'id': category.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <a class="btn btn-primary" href="{{ path('easy_category_add') }}"> Ajouter un nouvelle catégorie de produit</a>
+    </div>
+{% endblock %}

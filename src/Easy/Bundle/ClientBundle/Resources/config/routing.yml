@@ -9,11 +9,19 @@ easy_client_product:
 easy_client_event:
     path:   /event
     defaults: { _controller: EasyClientBundle:Event:list }
-
-easy_client_event_inscription:
-    path:   /event/inscription
-    defaults: { _controller: EasyClientBundle:Event:inscription }
     
 easy_client_update:
     path:     /user/update
     defaults: { _controller: EasyVentesBundle:User:update }
+
+easy_client_event_inscription:
+    path:   /event/inscription/{id}
+    defaults: { _controller: EasyClientBundle:Event:inscription }
+
+easy_client_event_detail:
+    path:   /event/detail/{id}
+    defaults: { _controller: EasyClientBundle:Event:detail }
+
+easy_client_best:
+    path: /productsale/best
+    defaults: { _controller: EasyVentesBundle:ProductSale:best }

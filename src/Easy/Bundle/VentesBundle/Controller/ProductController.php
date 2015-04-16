@@ -41,6 +41,24 @@ class ProductController extends Controller
         return $this->render('EasyVentesBundle:Product:form.html.twig', ['form' => $form->createView()]);
     }
 
+    public function updateAction($id, Request $request)
+    {
+        $repo = $this->getDoctrine()->getManager()->getRepository('EasyVentesBundle:Product');
+        $product = $repo->find($id);
+
+        $form = $this->createForm(new ProductType(),$product);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($form->getData());
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('easy_product_list'));
+        }
+        return $this->render('EasyVentesBundle:Product:form.html.twig', ['form' => $form->createView()]);
+    }
+
     public function removeAction($id)
     {
         $em = $this->getDoctrine()->getManager();

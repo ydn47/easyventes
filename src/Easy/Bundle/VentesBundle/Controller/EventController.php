@@ -9,12 +9,15 @@ use Symfony\Component\HttpFoundation\Request;
 
 class EventController extends Controller
 {
-    public function listAction()
+    public function listAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $repos = $em->getRepository('EasyVentesBundle:Event');
         $events = $repos->findAll();
-        return $this->render('EasyVentesBundle:Event:list.html.twig', ['events'=> $events]);
+        $pagination = $this->get('knp_paginator')
+            ->paginate($events, $request->query->get('page', 1), 10);
+
+        return $this->render('EasyVentesBundle:Event:list.html.twig', ['pagination'=> $pagination]);
     }
 
     public function detailAction($id)
@@ -34,6 +37,8 @@ class EventController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($form->getData());
             $em->flush();
+
+            $this->sendMailAction($form->getData());
 
             return $this->redirect($this->generateUrl('easy_event_list'));
         }
@@ -67,6 +72,22 @@ class EventController extends Controller
         $em->flush();
 
         return $this->redirect($this->generateUrl("easy_event_list"));
+    }
+
+    public function sendMailAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repos = $em->getRepository('EasyVentesBundle:User');
+        $users = $repos->findAll();
+        foreach($users as $user){
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Demande de Participation')
+                ->setFrom('send@example.com')
+                ->setTo($user->getEmail())
+                ->setBody($this->renderView('EasyClientBundle:Mailer:newEvent.html.twig'), 'text/html')
+            ;
+            $this->get('mailer')->send($message);
+        }
     }
 
 }

@@ -3,7 +3,6 @@
 namespace Easy\Bundle\VentesBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-
 /**
  * EventRepository
  *
@@ -12,4 +11,34 @@ use Doctrine\ORM\EntityRepository;
  */
 class EventRepository extends EntityRepository
 {
+    public function findEventInProgress()
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('e')
+            ->from('EasyVentesBundle:Event', 'e')
+            ->where('e.dateStart >= :datecourant')
+            ->setParameter('datecourant', new \Datetime(date('d-m-Y')))
+            ->orderBy('e.dateStart', 'ASC');
+        return $qb->getQuery()
+            ->getResult();
+    }
+
+    public function findThreeEvents()
+    {
+        $qb = $this
+            ->createQueryBuilder('e')
+            ->add('select', 'e')
+            ->add('from', 'EasyVentesBundle:Event e')
+            ->add('orderBy', 'e.dateStart DESC')
+            ->add('where', 'e.dateStart < :date')
+            ->setParameter('date', date("Y-m-d H:i:s"))
+            ->setFirstResult( 0 )
+            ->setMaxResults( 3 );
+
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
