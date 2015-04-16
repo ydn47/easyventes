@@ -1,5 +1,7 @@
 {% extends '::base.html.twig' %}
-
+{% block nav %}
+    {% include ':include:navback.html.twig' %}
+{% endblock nav %}
 {% block body %}
     <h1>Ajout d'un Event</h1>
     {{ form(form) }}

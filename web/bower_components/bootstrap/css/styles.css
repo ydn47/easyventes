@@ -9,7 +9,7 @@
 }
 
 #heading-breadcrumbs {
-    background: #467fbf;;
+    background: #467fbf;
     opacity: 0.9;
 }
 
@@ -22,3 +22,11 @@ a:hover, a:focus {
     text-decoration: underline;
 }
 
+.icon a:hover, a:focus {
+    color: #467fbf;
+    text-decoration: underline;
+}
+
+footer{
+    margin-top: 100px;
+}

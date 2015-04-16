@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+blal
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="form-group">
+    {{ form_widget(form) }}
+    <div>
+
+    </div>
+</form>
+{% endblock body %}

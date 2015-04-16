@@ -1,49 +1,32 @@
-
 <nav class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
     <div class="navbar navbar-default yamm">
         <div class="container">
-
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Easy Ventes</a>
+            </div>
+            <div class="navbar-buttons">
+                <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-align-justify"></i>
+                </button>
+            </div>
             <div class="collapse navbar-collapse" id="navigation">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-                <ul class="nav navbar-nav navbar-right">
-                    {% if is_granted("ROLE_ADMIN") %}
-                    <li class="active">
-                        <a href="{{ path('easy_client_homepage') }}">Easy Vente</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Catégories</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ path('easy_category_list') }}">Liste</a></li>
-                            <li><a href="{{ path('easy_category_add') }}">Ajouter</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Produits</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ path('easy_product_list') }}">Liste</a></li>
-                            <li><a href="{{ path('easy_product_add') }}">Ajouter</a></li>
-                        </ul>
-                    <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Evènements</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ path('easy_event_list') }}">Liste</a></li>
-                            <li><a href="{{ path('easy_event_add') }}">Ajouter</a></li>
-                        </ul>
-                    </li>
-                    {% else %}
-                    <li class="active">
-                        <a href="{{ path('easy_client_homepage') }}">Easy Vente</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('easy_client_event') }}">Prochaines Ventes</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('easy_client_product') }}">Produits Phares</a>
-                    </li>
-                    <li>
-                        <a href="{{ path("easy_client_update") }}">Paramètres</a>
-                    </li>
-                {% endif %}
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active">
+                    <a href="{{ path('easy_client_homepage') }}">Accueil</a>
+                </li>
+                <li>
+                    <a href="{{ path('easy_client_event') }}">Prochaines Ventes</a>
+                </li>
+                <li>
+                    <a href="{{ path('easy_client_product') }}">Produits</a>
+                </li>
+                <li>
+                    <a href="{{ path("easy_client_update") }}">Paramètres</a>
+                </li>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon compte <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -63,7 +46,7 @@
                         </li>
                     </ul>
                 </li>
-                </ul>
+            </ul>
             </div><!-- /.navbar-collapse -->
 
             {% for flashMessage in app.session.flashbag.get('success') %}
@@ -85,6 +68,7 @@
                 </div>
             {% endfor %}
 
-        </div><!-- /.container-fluid -->
+            </div><!-- /.container-fluid -->
+        </div>
     </div>
 </nav>
