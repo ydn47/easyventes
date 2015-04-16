@@ -40,7 +40,7 @@ class UserEvent
     /**
      * @var string
      *
-     * @ORM\Column(name="state", type="string", columnDefinition="enum('DEM', 'VAL', 'REF')")
+     * @ORM\Column(name="state", type="string", columnDefinition="enum('DEM', 'VAL', 'REF', 'VAF')")
      */
     private $state;
 
