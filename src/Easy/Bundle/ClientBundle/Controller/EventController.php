@@ -45,7 +45,6 @@ class EventController extends Controller
         $event = $repo->find($id);
 
         $user = $this->container->get('security.context')->getToken()->getUser();
-
         $userEvent = $manager->getRepository('EasyVentesBundle:UserEvent')
             ->findOneBy(
                 array('user' => $user, 'event' => $event)
@@ -56,7 +55,19 @@ class EventController extends Controller
             $state = $userEvent->getState();
         }
 
-        return $this->render('EasyClientBundle:Event:detail.html.twig', ['event' => $event, 'state' => $state]);
+        $categories = $event->getCategories();
+        $repoP = $manager->getRepository('EasyVentesBundle:Product');
+        $products = array();
+        foreach ($categories as $category) {
+            $productsType = $repoP->findProductsType($category->getId());
+            foreach ($productsType as $product) {
+                $p = $repoP->find($product->getId());
+                if ($p->getActive()) {
+                    $products[] = $p;
+                }
+            }
+        }
+        return $this->render('EasyClientBundle:Event:detail.html.twig', ['event' => $event, 'state' => $state, 'products' => $products]);
     }
 
     public function inscriptionAction($id)

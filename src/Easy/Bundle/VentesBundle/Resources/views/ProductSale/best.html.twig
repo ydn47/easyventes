@@ -2,6 +2,7 @@
 {% block nav %}
     {% include ':include:navback.html.twig' %}
 {% endblock nav %}
+
 {% block body %}
     <h1>Produits les plus vendus</h1>
     <div class="row">
@@ -9,14 +10,16 @@
             <tr>
                 <th>Produit</th>
                 <th>Quantité vendue</th>
+                <th>Favoris</th>
             </tr>
 
-                {% for product in products %}
-                    <tr>
-                        <td>{{ product.name }}</td>
-                        <td>{{ product.qty }}</td>
-                    </tr>
-                {% endfor %}
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.qty }}</td>
+                    <td><a href="{{ path('easy_client_favorite', {'id': product.id})  }}">Ajouter</a></td>
+                </tr>
+            {% endfor %}
 
         </table>
     </div>

@@ -25,3 +25,7 @@ easy_client_event_detail:
 easy_client_best:
     path: /productsale/best
     defaults: { _controller: EasyVentesBundle:ProductSale:best }
+
+easy_client_favorite:
+    path: /productsale/favorite/{id}
+    defaults: { _controller: EasyVentesBundle:UserCategory:update }
