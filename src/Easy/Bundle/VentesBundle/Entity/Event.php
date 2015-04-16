@@ -68,7 +68,14 @@ class Event
      * @ORM\OneToMany(targetEntity="ProductSale", mappedBy="event", cascade={"persist"})
      */
     private $products;
-    
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbpers", type="integer")
+     */
+    private $nbpers;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -281,6 +288,28 @@ class Event
         return $this->products;
     }
 
+    /**
+     * Set nbpers
+     *
+     * @param integer $nbpers
+     * @return Event
+     */
+    public function setNbPers($nbpers)
+    {
+        $this->nbpers = $nbpers;
+
+        return $this;
+    }
+
+    /**
+     * Get nbpers
+     *
+     * @return integer
+     */
+    public function getNbPers()
+    {
+        return $this->nbpers;
+    }
 
     /**
      * @Assert\Callback

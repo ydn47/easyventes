@@ -49,6 +49,18 @@ class User extends BaseUser
      */
     private $events;
 
+    /**
+     * @ORM\OneToMany(targetEntity="UserCategory", mappedBy="user", cascade={"persist"})
+     */
+    private $categories;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbevent", type="integer")
+     */
+    private $nbevent;
+
     public function __construct()
     {
         parent::__construct();
@@ -129,6 +141,62 @@ class User extends BaseUser
     public function getEvents()
     {
         return $this->events;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param UserCategory $categories
+     * @return User
+     */
+    public function addCategory(UserCategory $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param UserCategory $categories
+     */
+    public function removeCategory(UserCategory $categories)
+    {
+        $this->events->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * Set nbevent
+     *
+     * @param integer $nbevent
+     * @return User
+     */
+    public function setNbEvent($nbevent)
+    {
+        $this->nbevent = $nbevent;
+
+        return $this;
+    }
+
+    /**
+     * Get nbevent
+     *
+     * @return integer
+     */
+    public function getNbEvent()
+    {
+        return $this->nbevent;
     }
 
 }
