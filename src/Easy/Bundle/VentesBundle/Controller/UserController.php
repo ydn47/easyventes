@@ -72,6 +72,9 @@ class UserController extends Controller
 
     public function indexAction()
     {
+        if($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+            return $this->redirect($this->generateUrl('easy_event_list'));
+        }
         return $this->render('EasyVentesBundle:User:index.html.twig');
     }
 }
