@@ -6,6 +6,7 @@ use Easy\Bundle\VentesBundle\Entity\Event;
 use Easy\Bundle\VentesBundle\Form\Type\EventType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 class EventController extends Controller
@@ -183,5 +184,39 @@ class EventController extends Controller
         }
 
         return $this->redirect($this->generateUrl("easy_event_list"));
+    }
+
+    public function exportAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('EasyVentesBundle:Event');
+        $events = $repo->findAll();
+        $lignes[] = array('Nom', 'Description');
+
+        foreach($events as $event) {
+            $lignes[] = array($event->getName(), $event->getDescription());
+        }
+
+        $chemin = 'listeEvents.csv';
+        $delimiteur = ';';
+
+
+        $fichier_csv = fopen($chemin, 'w+');
+
+        fprintf($fichier_csv, chr(0xEF).chr(0xBB).chr(0xBF));
+
+        foreach($lignes as $ligne){
+            fputcsv($fichier_csv, $ligne, $delimiteur);
+        }
+
+        fclose($fichier_csv);
+
+
+        $response = new Response();
+        $response->setContent(file_get_contents($chemin));
+        $response->headers->set('Content-Type', 'application/force-download');
+        $response->headers->set('Content-disposition', 'filename='. $chemin);
+
+        return $response;
     }
 }

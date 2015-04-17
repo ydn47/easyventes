@@ -1,7 +1,7 @@
 # Routes pour l'entité Product
 easy_product_homepage:
     path: /
-    defaults: { _controller: EasyVentesBundle:Default:index }
+    defaults: { _controller: EasyVentesBundle:Event:list }
 
 easy_product_list:
     path: /product
@@ -32,6 +32,10 @@ easy_event_list:
 easy_event_add:
     path: /event/add
     defaults: { _controller: EasyVentesBundle:Event:add }
+
+easy_event_export:
+    path: /event/export
+    defaults: { _controller: EasyVentesBundle:Event:export }
 
 easy_event_detail:
     path: /event/{id}

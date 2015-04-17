@@ -15,6 +15,9 @@ class EventController extends Controller
 {
     public function listAction(Request $request)
     {
+        if($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+            return $this->redirect($this->generateUrl('easy_event_list'));
+        }
         $em = $this->getDoctrine()->getManager();
         $repos = $em->getRepository('EasyVentesBundle:Event');
         $events = $repos->findEventInProgress();

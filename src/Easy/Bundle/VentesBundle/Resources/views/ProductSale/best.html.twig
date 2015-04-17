@@ -21,7 +21,6 @@
 {% endblock breadcrumbs %}
 
 {% block body %}
-    <h1>Produits les plus vendus</h1>
     <div class="row">
         <table class="table table-striped">
             <tr>
@@ -40,4 +39,7 @@
 
         </table>
     </div>
+
+    <a href="{{ path('easy_client_product') }}" class="btn btn-template-main"> Retour </a>
+
 {% endblock %}
