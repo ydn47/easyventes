@@ -12,7 +12,9 @@
                         <tr>
                             <td class='movableContentContainer'  >
 
-
+                                {% for productSaleEvent in productSalesEvent %}
+                                    {{productSaleEvent.name}}
+                                {% endfor %}
                                 <div class='movableContent'>
                                     <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
                                         <tr><td height='25'  colspan='3'></td></tr>
@@ -24,7 +26,7 @@
                                                         <td align='left' valign='middle' >
                                                             <div class="contentEditableContainer contentImageEditable">
                                                                 <div class="contentEditable" >
-                                                                    <img src="{{ asset('bower_components/bootstrap/img/logo.png') }}" alt='Compagnie logo' data-default="placeholder" data-max-width="300" width='250' height='60' >
+                                                                    <img src="http://localhost/easyventes/web/bower_components/bootstrap/img/logo.png" alt='Compagnie logo' data-default="placeholder" data-max-width="300" width='250' height='60' >
                                                                 </div>
                                                             </div>
                                                         </td>

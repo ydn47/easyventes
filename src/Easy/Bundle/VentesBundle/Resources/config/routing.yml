@@ -72,3 +72,7 @@ easy_productsale_list:
 easy_productsale_sendemailthank:
     path: /thank
     defaults: { _controller: EasyVentesBundle:ProductSale:sendEmailThank}
+    
+easy_event_loterie:
+    path: /loterie/{id}
+    defaults: { _controller: EasyVentesBundle:Event:loterie}
