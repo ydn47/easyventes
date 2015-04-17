@@ -1,7 +1,5 @@
-{% extends '::base.html.twig' %}
-{% block nav %}
-    {% include ':include:navback.html.twig' %}
-{% endblock nav %}
+{% extends '::dashboard.html.twig' %}
+
 
 {% block body %}
     <h1>Ventes</h1>
@@ -24,8 +22,8 @@
                     <td>{{ event.dateStart | date('d/m/y H:i') }}</td>
                     <td>{{ event.dateEnd | date('d/m/y H:i') }}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{ path('easy_event_detail', {'id': event.id})  }}">Voir</a>
-                        <a class="btn btn-primary" href="{{ path('easy_event_update', {'id': event.id}) }}">Modifier</a>
+                        <a class="btn btn-template-main" href="{{ path('easy_event_detail', {'id': event.id})  }}">Voir</a>
+                        <a class="btn btn-template-primary" href="{{ path('easy_event_update', {'id': event.id}) }}">Modifier</a>
                     </td>
                 </tr>
             {% endfor %}
@@ -35,7 +33,7 @@
         <div class="navigation">
             {{ knp_pagination_render(pagination) }}
         </div>
-        <a class="btn btn-primary" href="{{ path('easy_event_add') }}"> Ajouter un nouvel évènement</a>
+        <a class="btn btn-template-primary" href="{{ path('easy_event_add') }}"> Ajouter un nouvel évènement</a>
     </div>
 
     </div>

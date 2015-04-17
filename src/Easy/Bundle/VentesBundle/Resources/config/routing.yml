@@ -1,6 +1,6 @@
 # Routes pour l'entité Product
 easy_product_homepage:
-    path: /dashboard
+    path: /
     defaults: { _controller: EasyVentesBundle:Default:index }
 
 easy_product_list:
@@ -69,6 +69,10 @@ easy_productsale_list:
     path: /productsale/{id}
     defaults: { _controller: EasyVentesBundle:ProductSale:list }
 
+easy_productsale_sendemailthank:
+    path: /thank
+    defaults: { _controller: EasyVentesBundle:ProductSale:sendEmailThank}
+    
 easy_event_loterie:
-    path: /event/loterie/{id}
-    defaults: { _controller: EasyVentesBundle:Event:loterie }
+    path: /loterie/{id}
+    defaults: { _controller: EasyVentesBundle:Event:loterie}

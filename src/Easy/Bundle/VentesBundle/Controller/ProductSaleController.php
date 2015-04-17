@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityNotFoundException;
 use Easy\Bundle\VentesBundle\Entity\ProductSale;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProductSaleController extends Controller
 {
@@ -99,6 +100,36 @@ class ProductSaleController extends Controller
             $i++;
         }
         return $this->render('EasyVentesBundle:ProductSale:best.html.twig', array('products' => $products));
+    }
+    
+    public function sendEmailThankAction() {
+        $em = $this->getDoctrine()->getManager();
+        $event = $em->getRepository("EasyVentesBundle:Event")
+                        ->findOneBy(array("id" => $this->get('session')->get('event_id')));
+        $usersEvent = $em->getRepository("EasyVentesBundle:UserEvent")
+                        ->findBy(array("event" => $event));
+        $productSalesEvent = $em->createQuery("SELECT p FROM EasyVentesBundle:Product p WHERE p.id IN (SELECT IDENTITY(q.product) FROM EasyVentesBundle:ProductSale q WHERE q.event = :eventID ORDER BY q.qty )")
+                                ->setParameter('eventID',$this->get('session')->get('event_id') )
+                                ->setMaxResults(3)
+                                ->getResult();
+        return $this->render('EasyClientBundle:Mailer:thanks.html.twig', array("productSalesEvent" => $productSalesEvent));
+
+        foreach ($usersEvent as $userEvent) {
+            $message = \Swift_Message::newInstance()
+                    ->setSubject("Merci d'avoir participer à notre évènement")
+                    ->setFrom("yamgoue.daniella@gmail.com")
+                    ->setTo($userEvent->getUser()->getEmail())
+                    ->setContentType("text/html")
+                    ->setBody(
+                        $this->renderView(
+                            'EasyClientBundle:Mailer:thanks.html.twig', array("productSalesEvent" => $productSalesEvent))
+                        )
+//                ->setBody("merci d'avoir participé")
+                    ;
+                $this->get('mailer')->send($message);
+        }
+        
+//        return new Response($message);
     }
 
     public function updateAction()
