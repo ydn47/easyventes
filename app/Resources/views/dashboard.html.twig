@@ -23,7 +23,8 @@
 {% block nav %}
     {% include ':include:navBack.html.twig' %}
 {% endblock nav %}
-
+{% block breadcrumbs %}
+{% endblock breadcrumbs %}
 <div class="container">
 
     {% for flashMessage in app.session.flashbag.get('success') %}

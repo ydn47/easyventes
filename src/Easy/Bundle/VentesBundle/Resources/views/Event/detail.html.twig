@@ -1,5 +1,19 @@
 {% extends '::dashboard.html.twig' %}
+{% block breadcrumbs %}
+    <div id="heading-breadcrumbs2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1>{{ event.name }}</h1>
+                </div>
+                <div class="col-md-5">
 
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock breadcrumbs %}
 {% block body %}
     <div class="row">
         <br>
@@ -24,11 +38,11 @@
         </div>
         <a class="btn btn-primary{% if (addProduct == false) %} disabled"{% endif %}
            href="{{ path('easy_client_best') }}">Ajouter les produits vendus</a>
-        <a class="btn btn-primary{% if (loterie == false) %} disabled"{% endif %}"
+        <a class="btn btn-template-main{% if (loterie == false) %} disabled"{% endif %}"
            href="{{ path('easy_event_loterie', { id : event.id }) }}">
             Lancer la loterie
         </a>
-        <a class="btn btn-info" href="{{ path('easy_event_list') }}">Retour</a>
+        <a class="btn btn-template-primary" href="{{ path('easy_event_list') }}">Retour</a>
 
         <h3>Produits liés à la vente</h3>
         <div class="row">

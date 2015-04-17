@@ -1,7 +1,19 @@
-{% extends '::base.html.twig' %}
-{% block nav %}
-    {% include ':include:navback.html.twig' %}
-{% endblock nav %}
+{% extends '::dashboard.html.twig' %}
+{% block breadcrumbs %}
+    <div id="heading-breadcrumbs2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h1>{{ product.name }}</h1>
+                </div>
+                <div class="col-md-5">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock breadcrumbs %}
 {% block body %}
     <div class="row">
         <div class="list-group">
@@ -28,5 +40,5 @@
         </div>
     </div>
 
-    <a type="button" class="btn btn-primary" href="{{ path('easy_product_list') }}">Retour</a>
+    <a type="button" class="btn btn-template-primary" href="{{ path('easy_product_list') }}">Retour</a>
 {% endblock %}

@@ -25,7 +25,7 @@ class ProductType extends AbstractType
                 'label'=> 'Active',
                 'data' => true,
                 'attr' => array('required' => false )))
-            ->add('btn', 'submit', array('label' => 'Valider', 'attr' => array('class' => 'btn btn-primary')));
+            ->add('btn', 'submit', array('label' => 'Valider', 'attr' => array('class' => 'btn btn-template-primary')));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

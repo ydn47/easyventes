@@ -13,6 +13,13 @@
     opacity: 0.9;
 }
 
+#heading-breadcrumbs2 {
+    background: #da4d4d;;
+    opacity: 0.9;
+    padding: 20px 0;
+    margin-bottom: 40px;
+}
+
 #heading-breadcrumbs a{
     color: #fff;
 }

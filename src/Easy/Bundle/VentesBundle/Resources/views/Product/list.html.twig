@@ -1,8 +1,6 @@
-{% extends '::base.html.twig' %}
+{% extends '::dashboard.html.twig' %}
 
-{% block nav %}
-    {% include ':include:navback.html.twig' %}
-{% endblock nav %}
+
 
 {% block body %}
     <h1>Produits</h1>
@@ -24,7 +22,7 @@
                     <td>{{ product.price }} €</td>
                     <td>
                         <a class="btn btn-template-main btn-sm" href="{{ path('easy_product_detail', {'id': product.id}) }}">Voir</a>
-                        <a class="btn btn-primary" href="{{ path('easy_product_update', {'id': product.id}) }}">Modifier</a>
+                        <a class="btn btn-template-primary" href="{{ path('easy_product_update', {'id': product.id}) }}">Modifier</a>
                     </td>
                 </tr>
             {% endfor %}
