@@ -106,6 +106,12 @@
     $('.datepicker').datepicker({
         dateFormat: 'dd/mm/yy'
     });
+
+        $('ul.nav > li').click(function (e) {
+            e.preventDefault();
+            $('ul.nav > li').removeClass('active');
+            $(this).addClass('active');
+
 </script>
 {% endjavascripts %}
 </body>
