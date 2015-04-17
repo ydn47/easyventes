@@ -169,16 +169,17 @@ class EventController extends Controller
             $userevent = $repository->findOneBy(array('user' => $user, 'event' => $event));
             $userevent->setState('VAL');
             $user->setNbEvent( $user->getNbEvent() + 1 );
-
+            $productSalesEvent = $manager->getRepository("EasyVentesBundle:ProductSale")
+                                    ->findAll();
             $manager->persist($user);
             $message = \Swift_Message::newInstance()
-                    ->setSubject("Merci d'avoir  participer à un événement")
+                    ->setSubject("Félicitations! Vous êtes sélectionné pour participer à un événement")
                     ->setFrom(array('yamgoue.daniella@gmail.com' => "Société easyVentes"))
                     ->setTo($user->getEmail())
                     ->setContentType("text/html")
                     ->setBody(
                         $this->renderView(
-                            'EasyClientBundle:Mailer:thanks.html.twig', array("productSalesEvent" => $productSalesEvent))
+                            'EasyClientBundle:Mailer:participation.html.twig')
                         )
 //                ->setBody("merci d'avoir participé")
                     ;

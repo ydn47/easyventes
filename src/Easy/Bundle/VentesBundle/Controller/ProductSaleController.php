@@ -102,34 +102,32 @@ class ProductSaleController extends Controller
         return $this->render('EasyVentesBundle:ProductSale:best.html.twig', array('products' => $products));
     }
     
-    public function sendEmailThankAction() {
+    public function sendEmailThankAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $event = $em->getRepository("EasyVentesBundle:Event")
-                        ->findOneBy(array("id" => $this->get('session')->get('event_id')));
+                        ->findOneBy(array("id" => $request->get('id')));
         $usersEvent = $em->getRepository("EasyVentesBundle:UserEvent")
                         ->findBy(array("event" => $event));
         $productSalesEvent = $em->createQuery("SELECT p FROM EasyVentesBundle:Product p WHERE p.id IN (SELECT IDENTITY(q.product) FROM EasyVentesBundle:ProductSale q WHERE q.event = :eventID ORDER BY q.qty )")
                                 ->setParameter('eventID',$this->get('session')->get('event_id') )
                                 ->setMaxResults(3)
                                 ->getResult();
-        return $this->render('EasyClientBundle:Mailer:thanks.html.twig', array("productSalesEvent" => $productSalesEvent));
 
         foreach ($usersEvent as $userEvent) {
             $message = \Swift_Message::newInstance()
                     ->setSubject("Merci d'avoir participer à notre évènement")
-                    ->setFrom("yamgoue.daniella@gmail.com")
+                    ->setFrom(array('yamgoue.daniella@gmail.com' => "Société easyVentes"))
                     ->setTo($userEvent->getUser()->getEmail())
                     ->setContentType("text/html")
                     ->setBody(
                         $this->renderView(
                             'EasyClientBundle:Mailer:thanks.html.twig', array("productSalesEvent" => $productSalesEvent))
                         )
-//                ->setBody("merci d'avoir participé")
                     ;
                 $this->get('mailer')->send($message);
         }
         
-//        return new Response($message);
+        return $this->redirect($this->generateUrl("easy_event_list"));
     }
 
     public function updateAction()
