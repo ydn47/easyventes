@@ -44,11 +44,13 @@
 
         {% if state is not null %}
             {% if state == 'DEM' %}
-                <p class="bg-success"> En attente de confirmation de participation </p>
+                <div class="alert alert-dismissible alert-info">
+                    En attente de confirmation de participation
+                </div>
             {% elseif state == 'VAL' %}
-                <p class="bg-success"> Participation Validé </p>
+                <div class="alert alert-dismissible alert-success">Participation Validé</div>
             {%  elseif state == 'REF'%}
-                <p "bg-danger"> Participation Refusé </p>
+                <div class="alert alert-dismissible alert-warning">Participation Refusé </div>
             {% endif %}
         {% else %}
             <a class="btn btn-primary" href="{{ path('easy_client_event_inscription', {id : event.id }) }}">Participer à l'évènement</a>
