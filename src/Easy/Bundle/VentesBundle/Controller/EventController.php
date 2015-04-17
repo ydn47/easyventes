@@ -74,19 +74,30 @@ class EventController extends Controller
         return $this->redirect($this->generateUrl("easy_event_list"));
     }
 
-    public function sendMailAction()
+    public function sendMailAction(Event $event)
     {
         $em = $this->getDoctrine()->getManager();
-        $repos = $em->getRepository('EasyVentesBundle:User');
+        $repos = $em->getRepository('EasyVentesBundle:User')
+                    ;
         $users = $repos->findAll();
+        $categoriesEvent = $event->getCategories();
+        $dispo = false;
         foreach($users as $user){
-            $message = \Swift_Message::newInstance()
+            $categoriesUser = $user->getCategories();
+            foreach ($categoriesUser as $categorieUser) {
+                if(in_array($categorieUser, $categoriesEvent)) {
+                    $dispo = true;
+                }
+            }
+            if($dispo) {
+                $message = \Swift_Message::newInstance()
                 ->setSubject('Demande de Participation')
                 ->setFrom('send@example.com')
                 ->setTo($user->getEmail())
-                ->setBody($this->renderView('EasyClientBundle:Mailer:newEvent.html.twig'), 'text/html')
-            ;
-            $this->get('mailer')->send($message);
+                ->setBody($this->renderView('EasyClientBundle:Mailer:demandeParticipation.html.twig'), 'text/html');
+                $this->get('mailer')->send($message);
+            }
+            
         }
     }
 
@@ -100,6 +111,7 @@ class EventController extends Controller
         $event = $repo->find($id);
         $users = $repos->findUserLoterie($event);
 
+        
         foreach ($users as $user){
 
             $userevent = $repository->findOneBy(array('user' => $user, 'event' => $event));
@@ -107,6 +119,18 @@ class EventController extends Controller
             $user->setNbEvent( $user->getNbEvent() + 1 );
 
             $manager->persist($user);
+            $message = \Swift_Message::newInstance()
+                    ->setSubject("Invitation à participer à un événement")
+                    ->setFrom("yamgoue.daniella@gmail.com")
+                    ->setTo($user->getEmail())
+                    ->setContentType("text/html")
+                    ->setBody(
+                        $this->renderView(
+                            'EasyClientBundle:Mailer:thanks.html.twig', array("productSalesEvent" => $productSalesEvent))
+                        )
+//                ->setBody("merci d'avoir participé")
+                    ;
+                $this->get('mailer')->send($message);
             $manager->persist($userevent);
             $manager->flush();
 

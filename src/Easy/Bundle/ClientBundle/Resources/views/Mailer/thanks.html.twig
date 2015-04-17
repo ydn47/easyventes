@@ -16,7 +16,6 @@
             -ms-text-size-adjust: 100% !important;
             -webkit-font-smoothing: antialiased !important;
         }
-
         .tableContent img {
             border: 0 !important;
             display: block !important;
@@ -68,9 +67,7 @@
             background: #2C94E0;
         }
 
-
     </style>
-
     {#<script type="colorScheme" class="swatch active">
   {
     "name":"Default",
@@ -97,147 +94,89 @@
 
     <tr>
         <td>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0"
-                   align="center" valign='top'>
-                <tr>
-                    <td class='movableContentContainer'>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
+                        <tr>
+                            <td class='movableContentContainer'  >
 
+                                {% for productSaleEvent in productSalesEvent %}
+                                    {{productSaleEvent.name}}
+                                {% endfor %}
+                                <div class='movableContent'>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
+                                        <tr><td height='25'  colspan='3'></td></tr>
 
-                        <div class='movableContent'>
-                            <table width="100%" border="0" cellspacing="0"
-                                   cellpadding="0" align="center" valign='top'>
-                                <tr>
-                                    <td height='25' colspan='3'></td>
-                                </tr>
-
-                                <tr>
-                                    <td valign='top' colspan='3'>
-                                        <table width="600" border="0"
-                                               cellspacing="0" cellpadding="0"
-                                               align="center" valign='top'>
-                                            <tr>
-                                                <td align='left'
-                                                    valign='middle'>
-                                                    <div class="contentEditableContainer contentImageEditable">
-                                                        <div class="contentEditable">
-                                                            <img src="{{ asset('bower_components/bootstrap/img/logo.png') }}"
-                                                                 alt='Compagnie logo'
-                                                                 data-default="placeholder"
-                                                                 data-max-width="300"
-                                                                 width='250'
-                                                                 height='60'>
-                                                        </div>
-                                                    </div>
-                                                </td>
-
-                                                <td align='center' valign='top'
-                                                    width="180">
-                                                    <div class="contentEditableContainer contentTextEditable"
-                                                         style='display:inline-block;'>
-                                                        <div class="contentEditable">
-                                                            Si cet e-mail ne
-                                                            s'affiche pas
-                                                            correctement
-                                                            <a target='_blank'
-                                                               href=""
-                                                               style='color:#467fbf;font-size:13px;text-decoration:none;'>Cliquez-ici </a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class='movableContent'>
-                            <table width="100%" border="0" cellspacing="0"
-                                   cellpadding="0" align="center" valign='top'>
-                                <tr>
-                                    <td>
-                                        <table width="600" border="0"
-                                               cellspacing="0" cellpadding="0"
-                                               align="center">
-                                            <tr>
-                                                <td height='10'>&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td style='border-bottom:1px solid #DDDDDD'></td>
-                                            </tr>
-                                            <tr>
-                                                <td height='10'>&nbsp;</td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class='movableContent'>
-                            <table width="100%" border="0" cellspacing="0"
-                                   cellpadding="0" align="center" valign='top'>
-                                <tr>
-                                    <td>
-                                        <table width="600" border="0"
-                                               cellspacing="0" cellpadding="0"
-                                               align="center" valign='top'>
-                                            <tr>
-                                                <td colspan='3'
-                                                    height='25'></td>
-                                            </tr>
-                                            <tr>
-                                                <td width='50'></td>
-                                                <td width='500'>
-                                                    <table width="500"
-                                                           border="0"
-                                                           cellspacing="0"
-                                                           cellpadding="0"
-                                                           align="center"
-                                                           valign='top'>
-                                                        <tr>
-                                                            <td align='center'>
-                                                                <div class='contentEditableContainer contentTextEditable'>
-                                                                    <div class='contentEditable'>
-                                                                        <h1 style='font-size:32px;'>
-                                                                            Merci
-                                                                            d'avoir
-                                                                            participer
-                                                                            à
-                                                                            cete
-                                                                            évènements
-                                                                        </h1>
-                                                                    </div>
+                                        <tr>
+                                            <td valign='top'  colspan='3'>
+                                                <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
+                                                    <tr>
+                                                        <td align='left' valign='middle' >
+                                                            <div class="contentEditableContainer contentImageEditable">
+                                                                <div class="contentEditable" >
+                                                                    <img src="http://localhost/easyventes/web/bower_components/bootstrap/img/logo.png" alt='Compagnie logo' data-default="placeholder" data-max-width="300" width='250' height='60' >
                                                                 </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td height='20'></td>
-                                                        </tr>
+                                                            </div>
+                                                        </td>
 
-                                                    </table>
-                                                </td>
-                                                <td width='50'></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan='3'
-                                                    height='45'></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                                                        <td align='center' valign='top' width="180">
+                                                            <div class="contentEditableContainer contentTextEditable" style='display:inline-block;'>
+                                                                <div class="contentEditable" >
+                                                                    Si cet e-mail ne s'affiche pas correctement
+                                                                    <a target='_blank' href="" style='color:#467fbf;font-size:13px;text-decoration:none;'>Cliquez-ici </a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
 
-                        <div class='movableContent'>
-                            <table width="100%" border="0" cellspacing="0"
-                                   cellpadding="0" align="center" valign='top'>
-                                <tr>
-                                    <td>
-                                        <table width="600" border="0"
-                                               cellspacing="0" cellpadding="0"
-                                               align="center" valign='top'>
-                                            <tr>
+                                <div class='movableContent'>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'><tr><td>
+                                                <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" >
+                                                    <tr><td height='10'>&nbsp;</td></tr>
+                                                    <tr><td style='border-bottom:1px solid #DDDDDD'></td></tr>
+                                                    <tr><td height='10'>&nbsp;</td></tr>
+                                                </table>
+                                            </td></tr></table>
+                                </div>
+
+                                <div class='movableContent'>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'><tr><td>
+                                                <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
+                                                    <tr><td colspan='3' height='25'></td></tr>
+                                                    <tr>
+                                                        <td width='50'></td>
+                                                        <td width='500'>
+                                                            <table width="500" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
+                                                                <tr>
+                                                                    <td align='center'>
+                                                                        <div class='contentEditableContainer contentTextEditable'>
+                                                                            <div class='contentEditable'>
+                                                                                <h1 style='font-size:32px;'>Merci d'avoir participer à cete évènements
+                                                                                </h1>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr><td height='20'></td></tr>
+
+                                                            </table>
+                                                        </td>
+                                                        <td width='50'></td>
+                                                    </tr>
+                                                    <tr><td colspan='3' height='45'></td></tr>
+                                                </table>
+                                            </td></tr></table>
+                                </div>
+
+                                <div class='movableContent'>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
+                                        <tr>
+                                            <td>
+                                                <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
+                                                    <tr>
                                                 <td colspan='3'
                                                     height='25'></td>
                                             </tr>
@@ -290,10 +229,8 @@
                             <table width="100%" border="0" cellspacing="0"
                                    cellpadding="0" align="center" valign='top'>
                                 <tr>
-                                    <td>
-                                        <table width="600" border="0"
-                                               cellspacing="0" cellpadding="0"
-                                               align="center" valign='top'>
+                                                        <td>
+                                                            <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" valign='top'>
                                             <tr>
                                                 <td colspan='5'
                                                     height='30'></td>
@@ -479,138 +416,76 @@
                                                     </table>
                                                 </td>
 
-                                            </tr>
-                                            <tr>
-                                                <td colspan='5'
-                                                    height='45'></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                                                                <tr>
+                                                                    <td>
+                                                                        <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" >
+                                                                            <tr><td height='10'>&nbsp;</td></tr>
+                                                                            <tr><td style='border-bottom:1px solid #DDDDDD'></td></tr>
+                                                                            <tr><td height='10'>&nbsp;</td></tr>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
 
-                        <div class='movableContent'>
-                            <table width="100%" border="0" cellspacing="0"
-                                   cellpadding="0" align="center" valign='top'>
-                                <tr>
-                                    <td>
-                                        <table width="600" border="0"
-                                               cellspacing="0" cellpadding="0"
-                                               align="center" valign='top'>
-                                            <tr>
-                                                <td>
-                                                    <table width="600"
-                                                           border="0"
-                                                           cellspacing="0"
-                                                           cellpadding="0"
-                                                           align="center"
-                                                           valign='top'>
+                                                                <tr><td height='28'>&nbsp;</td></tr>
 
-                                                        <tr>
-                                                            <td>
-                                                                <table width="600"
-                                                                       border="0"
-                                                                       cellspacing="0"
-                                                                       cellpadding="0"
-                                                                       align="center">
-                                                                    <tr>
-                                                                        <td height='10'>
-                                                                            &nbsp;</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td style='border-bottom:1px solid #DDDDDD'></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td height='10'>
-                                                                            &nbsp;</td>
-                                                                    </tr>
-                                                                </table>
-                                                            </td>
-                                                        </tr>
+                                                                <tr>
+                                                                    <td valign='top' align='center'>
+                                                                        <div class="contentEditableContainer contentTextEditable">
+                                                                            <div class="contentEditable" >
+                                                                                <p style='font-weight:bold;font-size:13px;line-height: 30px;'>Vous recevez cet email parce que vous êtes inscrit(e) au site de Easy Ventes</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
 
                                                         <tr>
                                                             <td height='28'>
                                                                 &nbsp;</td>
                                                         </tr>
 
-                                                        <tr>
-                                                            <td valign='top'
-                                                                align='center'>
-                                                                <div class="contentEditableContainer contentTextEditable">
-                                                                    <div class="contentEditable">
-                                                                        <p style='font-weight:bold;font-size:13px;line-height: 30px;'>
-                                                                            Vous
-                                                                            recevez
-                                                                            cet
-                                                                            email
-                                                                            parce
-                                                                            que
-                                                                            vous
-                                                                            êtes
-                                                                            inscrit(e)
-                                                                            au
-                                                                            site
-                                                                            de
-                                                                            Easy
-                                                                            Ventes</p>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
+                                                                <tr>
+                                                                    <td valign='top' align='center'>
+                                                                        <div class="contentEditableContainer contentTextEditable">
+                                                                            <div class="contentEditable" >
+                                                                                <p style=' font-weight:bold;font-size:13px;line-height: 30px;'>Easy Ventes</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="contentEditableContainer contentTextEditable">
+                                                                            <div class="contentEditable" >
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="contentEditableContainer contentTextEditable">
+                                                                            <div class="contentEditable" >
+                                                                                <a target='_blank' href='[UNSUBSCRIBE]' style='line-height:19px;color:#A8B0B6; font-size:13px;'>Se désinscrire</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
 
                                                         <tr>
                                                             <td height='28'>
                                                                 &nbsp;</td>
                                                         </tr>
-
-                                                        <tr>
-                                                            <td valign='top'
-                                                                align='center'>
-                                                                <div class="contentEditableContainer contentTextEditable">
-                                                                    <div class="contentEditable">
-                                                                        <p style=' font-weight:bold;font-size:13px;line-height: 30px;'>
-                                                                            Easy
-                                                                            Ventes</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="contentEditableContainer contentTextEditable">
-                                                                    <div class="contentEditable">
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="contentEditableContainer contentTextEditable">
-                                                                    <div class="contentEditable">
-                                                                        <a target='_blank'
-                                                                           href='[UNSUBSCRIBE]'
-                                                                           style='line-height:19px;color:#A8B0B6; font-size:13px;'>Se
-                                                                            désinscrire</a>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td height='28'>
-                                                                &nbsp;</td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
 
 
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
 
 
-</table>
+
+
+        </table>
 </body>
 </html>
