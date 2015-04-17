@@ -36,12 +36,17 @@
                 {% endfor %}
             </div>
         </div>
-        <a class="btn btn-primary{% if (addProduct == false) %} disabled"{% endif %}
+        <a class="btn btn-template-main{% if (addProduct == false) %} disabled"{% endif %}
            href="{{ path('easy_client_best') }}">Ajouter les produits vendus</a>
         <a class="btn btn-template-main{% if (loterie == false) %} disabled"{% endif %}"
            href="{{ path('easy_event_loterie', { id : event.id }) }}">
             Lancer la loterie
         </a>
+        <a class="btn btn-template-main{% if (addProduct == false) %} disabled"{% endif %}
+            href="{{ path('easy_productsale_sendemailthank', { id : event.id }) }}">
+            Cloturer l'évènement
+        </a>
+
         <a class="btn btn-template-primary" href="{{ path('easy_event_list') }}">Retour</a>
 
         <h3>Produits liés à la vente</h3>
