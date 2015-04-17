@@ -25,9 +25,30 @@
                 {% endfor %}
             </div>
         </div>
-        <a class="btn btn-primary" href="{{ path('easy_client_best') }}">Ajouter les produits vendus</a>
-        <a class="btn btn-primary" href="{{ path('easy_event_loterie', { id : event.id }) }}">Lancer la lotterie</a>
+        <a class="btn btn-primary{% if (addProduct == false) %} disabled"{% endif %}
+           href="{{ path('easy_client_best') }}">Ajouter les produits vendus</a>
+        <a class="btn btn-primary{% if (loterie == false) %} disabled"{% endif %}"
+           href="{{ path('easy_event_loterie', { id : event.id }) }}">
+            Lancer la loterie
+        </a>
         <a class="btn btn-info" href="{{ path('easy_event_list') }}">Retour</a>
+
+        <h3>Produits liés à la vente</h3>
+        <div class="row">
+            {% for product in products %}
+                <div class="col-lg-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">{{ product.name }}</div>
+                        <div class="panel-body">
+                            {% if product.picture %}
+                                <img height="100px" src="{{ asset(product.getWebPath())}}" alt="" />
+                            {% endif %}
+                            <p>{{ product.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}

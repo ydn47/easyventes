@@ -62,7 +62,7 @@ class EventController extends Controller
             $productsType = $repoP->findProductsType($category->getId());
             foreach ($productsType as $product) {
                 $p = $repoP->find($product->getId());
-                if ($p->getActive()) {
+                if ($p->getActive() && !in_array($p , $products)) {
                     $products[] = $p;
                 }
             }

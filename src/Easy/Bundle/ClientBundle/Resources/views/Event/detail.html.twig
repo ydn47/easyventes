@@ -57,15 +57,14 @@
         <h3>Produits liés à la vente</h3>
         <div class="row">
         {% for product in products %}
-
-            <div class="col-lg-2">
+            <div class="col-lg-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">{{ product.name }}</div>
                     <div class="panel-body">
                         {% if product.picture %}
-                            <img width="100px" src="{{ asset(product.getWebPath())}}" alt="" />
+                            <img height="100px" src="{{ asset(product.getWebPath())}}" alt="" />
                         {% endif %}
-                        {{ product.description }}
+                        <p>{{ product.description }}</p>
                     </div>
                 </div>
             </div>

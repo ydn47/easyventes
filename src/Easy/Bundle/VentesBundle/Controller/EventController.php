@@ -6,6 +6,7 @@ use Easy\Bundle\VentesBundle\Entity\Event;
 use Easy\Bundle\VentesBundle\Form\Type\EventType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class EventController extends Controller
 {
@@ -22,10 +23,47 @@ class EventController extends Controller
 
     public function detailAction($id)
     {
-        $repo = $this->getDoctrine()->getManager()->getRepository('EasyVentesBundle:Event');
+        $manager = $this->getDoctrine()->getManager();
+        $repo = $manager->getRepository('EasyVentesBundle:Event');
         $event = $repo->find($id);
 
-        return $this->render('EasyVentesBundle:Event:detail.html.twig', ['event' => $event]);
+        $categories = $event->getCategories();
+        $repoP = $manager->getRepository('EasyVentesBundle:Product');
+        $products = [];
+        foreach ($categories as $category) {
+            $productsType = $repoP->findProductsType($category->getId());
+            foreach ($productsType as $product) {
+                $p = $repoP->find($product->getId());
+                if ($p->getActive() && !in_array($p , $products)) {
+                    $products[] = $p;
+                }
+            }
+        }
+
+        // validation loterie
+        $repo = $manager->getRepository('EasyVentesBundle:UserEvent');
+        $userevents = $repo->findBy( array('event' => $event, 'state' => 'DEM'));
+
+        $loterie = false;
+        $addProduct = false;
+
+        if ($userevents){
+            if ( $event->getDateStart()->format("Y-m-d H:i:s") > date("Y-m-d H:i:s")){
+                $loterie = true;
+            }
+        }
+
+        // validation loterie and added product
+        if ($event->getDateEnd()->format("Y-m-d H:i:s") < date("Y-m-d H:i:s")){
+            $addProduct = true;
+        }
+
+        return $this->render('EasyVentesBundle:Event:detail.html.twig', [
+            'event' => $event,
+            'products' => $products,
+            'loterie' => $loterie,
+            'addProduct' => $addProduct
+        ]);
     }
 
     public function addAction(Request $request)
