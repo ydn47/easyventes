@@ -71,13 +71,13 @@ class EventController extends Controller
     {
         $form = $this->createForm(new EventType(), new Event());
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($form->getData());
             $em->flush();
 
-            $this->sendMailAction($form->getData());
+             $this->sendMailAction($form->getData());
 
             return $this->redirect($this->generateUrl('easy_event_list'));
         }
@@ -120,24 +120,37 @@ class EventController extends Controller
                     ;
         $users = $repos->findAll();
         $categoriesEvent = $event->getCategories();
-        $dispo = false;
+//        return new Response($categoriesEvent->getName());
+        $dispo = "false";
         foreach($users as $user){
-            $categoriesUser = $user->getCategories();
-            foreach ($categoriesUser as $categorieUser) {
-                if(in_array($categorieUser, $categoriesEvent)) {
-                    $dispo = true;
-                }
-            }
-            if($dispo) {
-                $message = \Swift_Message::newInstance()
-                ->setSubject('Demande de Participation')
-                ->setFrom('send@example.com')
+        $message = \Swift_Message::newInstance()
+                ->setSubject('Le produit que vous avez demandé est disponible')
+                ->setFrom(array('send@example.com' => "Société easyVentes"))
                 ->setTo($user->getEmail())
-                ->setBody($this->renderView('EasyClientBundle:Mailer:demandeParticipation.html.twig'), 'text/html');
+                ->setBody($this->renderView('EasyClientBundle:Mailer:newEvent.html.twig'), 'text/html');
                 $this->get('mailer')->send($message);
-            }
-            
         }
+//        $categoriesEventArray[] = $categoriesEvent;
+//        foreach($users as $user){
+//        $categoriesUser = $user->getCategories();
+//        
+//            foreach ($categoriesUser as $categorieUser) {
+//                var_dump($categorieUser); die();
+//            if(in_array($categorieUser, $categoriesEventArray)) {
+//                    $dispo = "true";
+//                }
+//            }
+//            return new Response($dispo);
+//            if($dispo) {
+//                $message = \Swift_Message::newInstance()
+//                ->setSubject('Demande de Participation')
+//                ->setFrom('send@example.com')
+//                ->setTo($user->getEmail())
+//                ->setBody($this->renderView('EasyClientBundle:Mailer:demandeParticipation.html.twig'), 'text/html');
+//                $this->get('mailer')->send($message);
+//            }
+//            
+//        }
     }
 
     public function loterieAction($id)
@@ -159,8 +172,8 @@ class EventController extends Controller
 
             $manager->persist($user);
             $message = \Swift_Message::newInstance()
-                    ->setSubject("Invitation à participer à un événement")
-                    ->setFrom("yamgoue.daniella@gmail.com")
+                    ->setSubject("Merci d'avoir  participer à un événement")
+                    ->setFrom(array('yamgoue.daniella@gmail.com' => "Société easyVentes"))
                     ->setTo($user->getEmail())
                     ->setContentType("text/html")
                     ->setBody(
